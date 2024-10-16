@@ -1,5 +1,5 @@
 # PRefLexOR
-Preference-based Recursive Language Modeling for Exploratory Optimization of Reasoning
+PRefLexOR: Preference-based Recursive Language Modeling for Exploratory Optimization of Reasoning and Agentic Thinking
 
 We introduce PRefLexOR (Preference-based Recursive Language Modeling for Exploratory Optimization of Reasoning), a framework that combines preference optimization with concepts from Reinforcement Learning (RL) to enable models to self-teach through iterative reasoning improvements. Central to PRefLexOR are thinking tokens, which explicitly mark reflective reasoning phases within model outputs, allowing the model to recursively engage in multi-step reasoning, revisiting, and refining intermediate steps before producing a final output. The foundation of PRefLexOR lies in Odds Ratio Preference Optimization (ORPO), where the model learns to align its reasoning with human-preferred decision paths by optimizing the log odds between preferred and non-preferred responses. The integration of Direct Preference Optimization (DPO) further enhances model performance by using rejection sampling to fine-tune reasoning quality, ensuring nuanced preference alignment. This hybrid approach between ORPO and DPO mirrors key aspects of RL, where the model is continuously guided by feedback to improve decision-making and reasoning. Active learning mechanisms allow PRefLexOR to dynamically generate new tasks, reasoning steps, and rejected answers on-the-fly during training. This adaptive process enables the model to self-teach as it continually improves through real-time feedback and recursive processing. 
 
@@ -13,3 +13,15 @@ Figure 1: Illustration of the workflow and design principles behind generative m
 ![image](https://github.com/user-attachments/assets/1119b9f7-5f45-4712-81a5-11699a02c571)
 
 Figure 2: PRefLexOR Recursive Reasoning Algorithm: An iterative approach leveraging a fine-tuned Reasoning Model and a general-purpose Critic Model to generate, refine, and optionally integrate responses. The process involves generating initial responses, extracting reflections, improving thinking processes, and creating new responses based on refined thinking, with an optional final integration step. The algorithm relies on extracting thinking processes (indicated via ```<|thinking|>...<|/thinking|>```) and reflection processes  (indicated via ```<|reflect|>...<|/reflect|>```). The use of special tokens allows us to easily construct such agentic modeling as it facilitates pausing inference, improving the strategy, and re-generating improved answers. The sampled responses can either be used in their final state or integrated into an amalgamated response that shows very rich facets in the scientific process.  
+
+### Reference
+
+```bibtex
+@article{buehler2024PRefLexOR,
+	author={Markus J. Buehler},
+	title={PRefLexOR: Preference-based Recursive Language Modeling for Exploratory Optimization of Reasoning and Agentic Thinking},
+	journal={arXiv,
+	year={2024},
+	url={},
+}
+```
