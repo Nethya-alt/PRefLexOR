@@ -19,6 +19,10 @@ Figure 2: PRefLexOR Recursive Reasoning Algorithm: An iterative approach leverag
 ## Example codes
 More will be added shortly, including full notebooks. Here are code snippets that show how the trainers are initialized and used. 
 
+<img width="517" alt="image" src="https://github.com/user-attachments/assets/622de5bb-e446-4814-a356-7131ea13b184">
+
+Figure 3: Overview of the PRefLexOR algorithm, consisting of Base Model Pre-training/Incipient Fine-tuning, Structured Thought Integration Training, Independent Reasoning Development, and the Recursive Reasoning Algorithm. Each phase can be scaled independently with additional compute to improve performance.
+
 ### RRefLexOR Structured Thought Integration Training via Odds Ratio Preference Optimization (ORPO) phase
 
 ```python
