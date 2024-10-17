@@ -14,11 +14,12 @@ Figure 1: Illustration of the workflow and design principles behind generative m
 
 Figure 2: PRefLexOR Recursive Reasoning Algorithm: An iterative approach leveraging a fine-tuned Reasoning Model and a general-purpose Critic Model to generate, refine, and optionally integrate responses. The process involves generating initial responses, extracting reflections, improving thinking processes, and creating new responses based on refined thinking, with an optional final integration step. The algorithm relies on extracting thinking processes (indicated via ```<|thinking|>...<|/thinking|>```) and reflection processes  (indicated via ```<|reflect|>...<|/reflect|>```). The use of special tokens allows us to easily construct such agentic modeling as it facilitates pausing inference, improving the strategy, and re-generating improved answers. The sampled responses can either be used in their final state or integrated into an amalgamated response that shows very rich facets in the scientific process.  
 
-# Installation
+## Installation
 
-# Example codes
-
+## Example codes
 More will be added shortly, including full notebooks. Here are code snippets that show how the trainers are initialized and used. 
+
+### RRefLexOR Structured Thought Integration Training via Odds Ratio Preference Optimization (ORPO) phase
 
 ```python
 from trl import ORPOConfig
@@ -33,7 +34,10 @@ from utils import *
 FT_model_name = 'PRefLexOR_ORPO_Model'
 repo_ID='lamm-mit'
 max_prompt_length = 512
-max_length = 1024
+max_length = 2048
+
+think_start='<|thinking|>'
+think_end='<|/thinking|>'
 
 # Adjust learning rate based on LoRA usage
 learning_rate = 5e-5 if use_LoRA else 5e-6
@@ -58,6 +62,7 @@ cfg = ORPOConfig(
     beta=0.1,                               # ORPO beta
     save_total_limit=3,                     # Limit on total saved models
     save_strategy="no",                     # Save strategy
+    report_to=['none'],                     # Reporting
     #hub_private_repo=True,                  # Use a private hub repo
     #hub_model_id=f'{repo_ID}/{FT_model_name}' # Hub model ID
 )
@@ -140,6 +145,186 @@ for iteration in range(num_iterations):
     # Update the dataset
     trainer.update_dataset()
     
+    print(f"Completed iteration {iteration + 1}/{num_iterations}")
+    print("#" * 64)
+```
+### PRefLexOR Independent Reasoning Development Phase via Efficient Exact Optimization (EXO)
+
+```python
+import json
+from trl import DPOConfig, DPOTrainer
+from transformers import TrainingArguments
+from datasets import load_dataset, concatenate_datasets
+
+# Reward Logging Callback
+class RewardLoggingCallback(TrainerCallback):
+    def on_log(self, args, state, control, logs=None, **kwargs):
+        # Safely access and print the last log entry
+        if state.log_history:
+            try:
+                print(f"Step={state.log_history[-1]['step']}",
+                      "rewards/margins=", state.log_history[-1]['rewards/margins'],
+                      "loss=", state.log_history[-1]['loss'],
+                      "rewards/accuracy=", state.log_history[-1]['rewards/accuracies'])
+            except KeyError:
+                print(end='')
+
+# Model and configuration settings
+FT_model_name = 'PRefLexOR_EXO_Model'
+repo_id = 'lamm-mit'
+
+think_start='<|thinking|>'
+think_end='<|/thinking|>'
+
+cfg = DPOConfig(
+    output_dir=FT_model_name,              # Output directory
+    num_train_epochs=1,                    # Number of training epochs
+    per_device_train_batch_size=1,         # Batch size per device during training
+    gradient_accumulation_steps=2,         # Steps before a backward/update pass
+    gradient_checkpointing=False,          # Gradient checkpointing
+    optim="adamw_torch_fused",             # Optimizer type
+    logging_steps=10,                      # Log every X steps
+    bf16=True,                             # Use bfloat16 precision
+    max_grad_norm=0.3,                     # Max gradient norm
+    learning_rate=5e-7,                    # Learning rate
+    warmup_ratio=0,
+    warmup_steps=0,
+    lr_scheduler_type="constant",          # LR scheduler type
+    max_prompt_length=512,
+    max_length=2000,
+    remove_unused_columns=False,
+    beta=0.1,                              # DPO beta
+    save_total_limit=50,                   # Save limit
+    save_strategy="epoch",
+    report_to=['none'],                    # Reporting
+    #hub_private_repo=True,                 # Private hub repo
+    #hub_model_id=f'lamm-mit/{FT_model_name}',
+    loss_type="exo_pair",                  # Loss type for DPO
+    label_smoothing=5e-3,
+)
+
+# Dataset and training parameters
+topics = 50
+num_questions_per_topic = 1
+num_epochs_per_dataset_generation = 2
+
+# Calculate number of steps
+if isinstance(topics, list) and all(isinstance(t, str) for t in topics):
+    n_steps = len(topics) * num_questions_per_topic * num_epochs_per_dataset_generation
+else:
+    n_steps = topics * num_questions_per_topic * num_epochs_per_dataset_generation
+
+# Trainer setup
+trainer = ActiveDPOTrainer(
+    model=model,
+    ref_model=ref_model,                      # Set to None if using PEFT
+    args=cfg,
+    train_dataset=temp,                        # Temporary training dataset
+    tokenizer=tokenizer,
+    n_steps=n_steps,                           # Train for n_steps before updating dataset
+    topics=topics,
+    number_nodes_to_get=3,
+    n_questions_for_each=num_questions_per_topic,
+    only_include_wrong_answers=False,
+    process=process,
+    generate_dataset=generate_dataset,
+    generate=generate_GPT_MistralRS,          # Function for generating datasets
+    get_rejected_from_trained_model=True,
+    index=index,
+    
+    # Dynamic Answer Comparison
+    dynamic_answer_comparison=True,           # Option for dynamic comparison
+    
+    # Mask Thinking Tokens Options
+    mask_thinking_tokens=False,               # Whether to mask thinking tokens
+    thinking_token_mask_percentage=0.2,       # Percentage of thinking tokens to mask in thinking sections
+
+    # Thinking Tokens
+    think_start_token=think_start,
+    think_end_token=think_end,
+    include_thinking_token_in_labels=True,
+
+    # Callbacks
+    callbacks=[RewardLoggingCallback()],
+)
+```
+
+Training loop:
+```python
+import json
+
+# Configuration
+num_iterations = 50
+
+# Training Loop
+for iteration in range(num_iterations):
+    print(f"Starting iteration {iteration + 1}/{num_iterations}")
+    
+    # Train for the current iteration
+    trainer.train()
+    
+    print("#" * 64)
+    
+    # Prompts and text generation
+    prompts = [
+        'Tell me why hierarchical structures work so well.',
+        f'Tell me why hierarchical structures work so well. Use {think_start}.',
+        f'Explain the relationship between materials and music. Use {think_start}.'
+    ]
+    
+    for txt in prompts:
+        output_text, _ = generate_local_model(
+            model=model,
+            tokenizer=tokenizer,
+            prompt=txt,
+            system_prompt=system_prompt,
+            prepend_response=f'{think_start}' if "Use" in txt else '',
+            num_return_sequences=1,
+            repetition_penalty=1.0,
+            temperature=0.1,
+            max_new_tokens=1024,
+            messages=[],
+            do_sample=True,
+        )
+        print(output_text)
+        print("-" * 64)
+
+    # Save the model
+    trainer.save_model(f"./{FT_model_name}")
+    model.push_to_hub(f"{repo_id}/{FT_model_name}", private=True, commit_message=f'iteration_{iteration + 1}')
+    tokenizer.push_to_hub(f"{repo_id}/{FT_model_name}", private=True, commit_message=f'iteration_{iteration + 1}')
+
+    # Save training logs
+    try:
+        with open("trainer_log_history.txt", "w") as f:
+            json.dump(trainer.log_history, f)
+        
+        # Path to the file and repository ID
+        file_path = "trainer_log_history.txt"
+        repo_id = f"lamm-mit/{model_current}"
+        
+        # Upload the file
+        api.upload_file(
+            path_or_fileobj=file_path,
+            path_in_repo="trainer_log_history.txt",
+            repo_id=repo_id,
+            repo_type="model",
+            commit_message="Upload trainer log history"
+        )
+
+    except Exception as e:
+        print("Could not push training logs:", e)
+
+    # Save dataset logs
+    try:
+        temp_data = trainer.concatenated_train_dataset
+        temp_data.push_to_hub(f"lamm-mit/{model_current}_data", private=True)
+    except Exception as e:
+        print("Could not push dataset logs:", e)
+
+    # Update the dataset
+    trainer.update_dataset()
+
     print(f"Completed iteration {iteration + 1}/{num_iterations}")
     print("#" * 64)
 ```
