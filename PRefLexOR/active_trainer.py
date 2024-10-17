@@ -1,5 +1,5 @@
 #####################################################
-# PRefLexOR ORPO
+# Active OPRO
 #####################################################
 
 from trl import ORPOTrainer, ORPOConfig
@@ -18,6 +18,7 @@ from contextlib import contextmanager, nullcontext
 from copy import deepcopy
 from functools import wraps
 from typing import Any, Callable, Dict, List, Literal, Optional, Tuple, Union
+import torch.nn as nn
 
 from transformers import TrainerCallback
 
@@ -55,6 +56,15 @@ class ActiveORPOTrainer(ORPOTrainer):
         n_questions_for_each: int = 2,
         only_include_wrong_answers: bool = True,
         get_rejected_from_trained_model: bool = False,
+
+        include_thinking_token_in_labels: bool = False,
+        mask_thinking_tokens: bool = False, 
+        thinking_token_mask_percentage: float = 1.0,  # Default to masking 100% of thinking tokens
+        dynamic_answer_comparison: bool = False,  # Option for dynamic comparison
+        think_start_token: str = '<|thinking|>', think_end_token: str = '<|/thinking|>',        
+        use_thinking_after_every_token: bool = False,
+        skip_thinking_for_rejected: bool = True,
+        N_length_think: int = 2
         
     ):
         self.n_steps = n_steps
@@ -69,6 +79,38 @@ class ActiveORPOTrainer(ORPOTrainer):
         self.generate_dataset=generate_dataset
         self.tokenizer=tokenizer
         self.model = model
+
+        # Convert tokens to token IDs using the tokenizer
+        self.think_start_id = self.tokenizer.convert_tokens_to_ids(think_start_token)
+        self.think_end_id = self.tokenizer.convert_tokens_to_ids(think_end_token)
+
+        self.dynamic_answer_comparison = dynamic_answer_comparison  # Enable/disable dynamic answer comparison, i.e. only answer will be included in loss
+        self.include_thinking_token_in_labels = include_thinking_token_in_labels #whether the thinking token is included in the answer comparison
+        
+        self.mask_thinking_tokens = mask_thinking_tokens  # Add the flag to enable/disable masking
+        self.thinking_token_mask_percentage = thinking_token_mask_percentage  # Percentage of thinking tokens to mask
+
+        self.use_thinking_after_every_token = use_thinking_after_every_token
+        self.N_length_think = N_length_think
+
+        self.skip_thinking_for_rejected=True
+
+        # Ensure that only one of the masking strategies is active at a time
+        assert not (self.mask_thinking_tokens and self.dynamic_answer_comparison), (
+            "Error: Both 'mask_thinking_tokens' and 'dynamic_answer_comparison' cannot be set to True simultaneously.\n"
+            "'mask_thinking_tokens' masks tokens within each segment defined by 'think_start_token' and 'think_start_token' according to the "
+            "percentage specified by 'thinking_token_mask_percentage'.\n"
+            "'dynamic_answer_comparison' masks all tokens before the final answer starts, focusing on only the relevant part of the answer after the LAST think_end_token.\n"
+            "Please set only one of these parameters to True at a time, or set both to False to disable both masking strategies."
+        )
+
+        if self.use_thinking_after_every_token:
+            print (f"Insert {N_length_think} thinking tokens after every token, ingore all other methods.")
+
+        
+        if self.dynamic_answer_comparison:
+            print ("Only consider answer in loss, identified after last thinking token.")
+        
 
         self.train_dataset= train_dataset
         self.get_rejected_from_trained_model=get_rejected_from_trained_model
@@ -119,6 +161,7 @@ class ActiveORPOTrainer(ORPOTrainer):
         self.local_step_counter = 0    
         
         
+
     def train(self, resume_from_checkpoint=None, trial=None, ignore_keys_for_eval=None,  n_steps=None,
               **kwargs,
             ):
@@ -195,8 +238,174 @@ class ActiveORPOTrainer(ORPOTrainer):
             if self.eval_dataset is not None:
                 self.eval_dataset = self.eval_dataset.map(self.tokenize_row, num_proc=self.args.dataset_num_proc)
                 
+         
+    ############### TO CHECK ###############
+    def tokenize_row(self, feature, model: Optional[Union[PreTrainedModel, nn.Module]] = None) -> Dict:
+        # Call the original tokenize_row method from the parent class to get the batch
+        batch = super().tokenize_row(feature, model)
+    
+        # Check if we need to add thinking tokens after every token
+        if self.use_thinking_after_every_token:
+            think_start = self.think_start_id
+            think_end = self.think_end_id
+            pad_token_id = self.tokenizer.pad_token_id  # Use the tokenizer's pad token ID for input_ids
+            pad_token_label = self.label_pad_token_id  # Use -100 for labels to ignore these tokens in loss calculation
+            eot_token = self.tokenizer.encode("<|eot_id|>", add_special_tokens=False)[0]  # Assuming <|eot_id|> exists
+    
+            def add_thinking_blocks_to_tokens(tokens, attention_mask):
+                """
+                Adds thinking blocks after each token in the sequence for both input_ids, labels, and attention masks.
+    
+                Args:
+                    tokens (List[int]): A list of token IDs representing the tokenized input.
+                    attention_mask (List[int]): The attention mask for the tokens.
+    
+                Returns:
+                    List[int], List[int], List[int]: The modified input_ids, labels, and attention mask with thinking blocks added.
+                """
+                modified_input_ids = []
+                modified_labels = []
+                modified_attention_mask = []
+    
+                found_eot = False  # Track if we've passed the <|eot_id|> token
+    
+                for token in tokens:
+                    # Add the original token to input_ids, labels, and attention mask
+                    modified_input_ids.append(token)
+                    modified_labels.append(token)
+                    modified_attention_mask.append(1)  # Original tokens should have an attention value of 1
+    
+                    # Check if the current token is the <|eot_id|>
+                    if token == eot_token:
+                        found_eot = True
+    
+                    # Add thinking blocks only if we've passed the <|eot_id|> marker
+                    if found_eot:
+                        modified_input_ids.extend([think_start] + [pad_token_id] * self.N_length_think + [think_end])
+                        modified_labels.extend([think_start] + [pad_token_label] * self.N_length_think + [think_end])
+                        modified_attention_mask.extend([1] + [1] * self.N_length_think + [1])  # Pad tokens have attention 0
+    
+                return modified_input_ids, modified_labels, modified_attention_mask
+    
+            if self.is_encoder_decoder:
+                # Encoder-decoder models: Apply modifications only to the decoder-related fields
+                tokens_to_process = [
+                    {"input_key": "chosen_decoder_input_ids", 
+                     "label_key": "chosen_labels", 
+                     "mask_key": "chosen_attention_mask"},
+                ]
+    
+                if not self.skip_thinking_for_rejected:
+                    tokens_to_process.append(
+                        {"input_key": "rejected_decoder_input_ids", 
+                         "label_key": "rejected_labels", 
+                         "mask_key": "rejected_attention_mask"}
+                    )
+    
+            else:
+                # Decoder-only models: Apply modifications to the whole sequence
+                tokens_to_process = [
+                    {"input_key": "chosen_input_ids", "label_key": "chosen_labels", "mask_key": "chosen_attention_mask"},
+                ]
+    
+                if not self.skip_thinking_for_rejected:
+                    tokens_to_process.append(
+                        {"input_key": "rejected_input_ids", "label_key": "rejected_labels", "mask_key": "rejected_attention_mask"}
+                    )
+    
+            for token_pair in tokens_to_process:
+                input_key = token_pair["input_key"]
+                label_key = token_pair["label_key"]
+                mask_key = token_pair["mask_key"]
+    
+                if input_key in batch and label_key in batch and mask_key in batch:
+                    input_ids = batch[input_key]
+                    labels = batch[label_key]
+                    attention_mask = batch[mask_key]
+    
+                    # Add thinking tokens after each token in the sequence for input_ids, labels, and attention_mask
+                    modified_input_ids, modified_labels, modified_attention_mask = add_thinking_blocks_to_tokens(input_ids, attention_mask)
+    
+                    # Update the batch with the modified input_ids, labels, and attention_mask
+                    batch[input_key] = modified_input_ids
+                    batch[label_key] = modified_labels
+                    batch[mask_key] = modified_attention_mask
+                        
+                        
+            return batch  # Return the updated batch, if elf.use_thinking_after_every_token
+        
+        # Apply masking logic based on the model type and class parameters
+        if self.is_encoder_decoder:
+            # Handling encoder-decoder scenario
+            if self.mask_thinking_tokens:
+                for key in ["chosen_labels", "rejected_labels"]:
+                    for i, labels in enumerate(batch[key]):
+                        labels_tensor = torch.tensor(labels)
+                        think_start_positions = (labels_tensor == self.think_start_id).nonzero(as_tuple=True)[0]
+                        think_end_positions = (labels_tensor == self.think_end_id).nonzero(as_tuple=True)[0]
+
+                        # Apply the masking logic for thinking tokens
+                        self.apply_thinking_masking_logic(batch, key, i, labels_tensor, think_start_positions, think_end_positions)
+
+            elif self.dynamic_answer_comparison:
+                for key in ["chosen_labels", "rejected_labels"]:
+                    for i, labels in enumerate(batch[key]):
+                        final_answer_start, _ = self.detect_final_answer_start(torch.tensor([labels]))
+                        batch[key][i][:final_answer_start[0]] = [self.label_pad_token_id] * final_answer_start[0]
+
+        else:
+            # Handling non-encoder-decoder scenario
+            if self.mask_thinking_tokens:
+                for key in ["chosen_sequence_tokens", "rejected_sequence_tokens"]:
+                    for i, tokens in enumerate(batch[key]):
+                        tokens_tensor = torch.tensor(tokens["labels"])
+                        think_start_positions = (tokens_tensor == self.think_start_id).nonzero(as_tuple=True)[0]
+                        think_end_positions = (tokens_tensor == self.think_end_id).nonzero(as_tuple=True)[0]
+
+                        # Apply the masking logic for thinking tokens
+                        self.apply_thinking_masking_logic(batch, key, i, tokens_tensor, think_start_positions, think_end_positions)
+
+            elif self.dynamic_answer_comparison:
+                for key in ["chosen_sequence_tokens", "rejected_sequence_tokens"]:
+                    for i, tokens in enumerate(batch[key]):
+                        final_answer_start, _ = self.detect_final_answer_start(torch.tensor([tokens["labels"]]))
+                        batch[key]["labels"][i][:final_answer_start[0]] = [self.label_pad_token_id] * final_answer_start[0]
+
+        return batch  # Return the updated batch
+
+    def apply_thinking_masking_logic(self, batch, key, i, labels_tensor, think_start_positions, think_end_positions):
+        """
+        Helper function to handle the masking of thinking tokens between start and end tokens.
+        """
+        unmatched_starts = set(think_start_positions.tolist())  # Track unmatched start tokens
+        for end_pos in reversed(think_end_positions):
+            start_pos_candidates = think_start_positions[think_start_positions < end_pos]
+            if len(start_pos_candidates) > 0:
+                start_pos = start_pos_candidates.max().item()
+                unmatched_starts.discard(start_pos)
+
+                # Determine the range to mask, considering self.include_thinking_token_in_labels
+                mask_start = start_pos + 1 if self.include_thinking_token_in_labels else start_pos
+                mask_end = end_pos - 1 if self.include_thinking_token_in_labels else end_pos
+
+                if mask_start <= mask_end:  # Ensure valid range after adjustments
+                    segment_length = mask_end - mask_start + 1
+                    num_tokens_to_mask = int(segment_length * self.thinking_token_mask_percentage)
+
+                    # Randomly choose tokens within the range to mask
+                    mask_indices = sorted(
+                        torch.randperm(segment_length)[:num_tokens_to_mask].tolist()
+                    )
+
+                    # Apply masking to the selected tokens within the range
+                    for idx in mask_indices:
+                        labels_tensor[mask_start + idx] = self.label_pad_token_id
+
+                # Update batch with masked labels
+                batch[key][i] = labels_tensor.tolist()
+
 #####################################################
-# PRefLexOR DPO
+# Active DPO
 #####################################################
 
 from trl import DPOTrainer
@@ -255,7 +464,6 @@ class ActiveDPOTrainer(DPOTrainer):
         get_rejected_from_trained_model: bool = False,
         
         include_thinking_token_in_labels: bool = False,
-        
         mask_thinking_tokens: bool = False, 
         thinking_token_mask_percentage: float = 1.0,  # Default to masking 100% of thinking tokens
         dynamic_answer_comparison: bool = False,  # Option for dynamic comparison
@@ -293,6 +501,7 @@ class ActiveDPOTrainer(DPOTrainer):
             "Please set only one of these parameters to True at a time, or set both to False to disable both masking strategies."
         )
 
+        
         if self.dynamic_answer_comparison:
             print ("Only consider answer in loss, identified after last thinking token")
         self.train_dataset= train_dataset
@@ -375,6 +584,7 @@ class ActiveDPOTrainer(DPOTrainer):
         self.current_step = 0
         self.local_step_counter = 0  
         
+        
 
     def train(self, resume_from_checkpoint=None, trial=None, ignore_keys_for_eval=None, n_steps=None,
               **kwargs,
@@ -441,6 +651,7 @@ class ActiveDPOTrainer(DPOTrainer):
 
         self.concatenated_train_dataset = concatenate_datasets([self.concatenated_train_dataset, self.train_dataset ])
         
+        
         # Process the new dataset
         with PartialState().local_main_process_first():
             # tokenize the dataset, lower writer batch size to avoid OOM (frequent in vision models)
@@ -485,6 +696,7 @@ class ActiveDPOTrainer(DPOTrainer):
                 )
             '''
 
+     
     def detect_final_answer_start(self, input_ids: torch.LongTensor) -> Tuple[List[int], List[bool]]:
         """
         Detects the start position of the final answer based on the last occurrence of think_end_id.
@@ -567,6 +779,7 @@ class ActiveDPOTrainer(DPOTrainer):
         
                     if len(think_start_positions) == 0 or len(think_end_positions) == 0:
                         # No pairs found, so nothing to mask
+                        #print(f"No pairs of start and end tokens found for sequence {i}.")
                         continue  # Skip to the next sequence
         
                     unmatched_starts = set(think_start_positions.tolist())  # Track unmatched start tokens
@@ -593,8 +806,10 @@ class ActiveDPOTrainer(DPOTrainer):
                                 # Apply masking to the selected tokens within the range
                                 for idx in mask_indices:
                                     labels[mask_start + idx] = args.label_pad_token_id
+
                             
                             batch[key][i] = labels
+                #print (f'batch[key][i] {key}', batch[key][i])
         
                     # Handle any remaining unmatched start tokens if necessary
                     #if unmatched_starts:
@@ -607,6 +822,8 @@ class ActiveDPOTrainer(DPOTrainer):
                     final_answer_start, _ = self.detect_final_answer_start([torch.tensor(labels)])
                     # Mask tokens before the final answer
                     batch[key][i][:final_answer_start[0]] = [args.label_pad_token_id] * final_answer_start[0]
+                    #print (f'batch[key][i] {key}', batch[key][i])
+        
     
         return dict(batch)
         
@@ -654,3 +871,5 @@ def plot_training_logs(log_history, keys_to_plot=None):
     plt.tight_layout()
     plt.show()
 
+
+ 
