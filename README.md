@@ -44,6 +44,7 @@ FT_model_name = 'PRefLexOR_ORPO_Model'
 repo_ID='lamm-mit'
 max_prompt_length = 512
 max_length = 2048
+private = True #whether or not HF repos are private
 
 think_start='<|thinking|>'
 think_end='<|/thinking|>'
@@ -72,7 +73,7 @@ cfg = ORPOConfig(
     save_total_limit=3,                     # Limit on total saved models
     save_strategy="no",                     # Save strategy
     report_to=['none'],                     # Reporting
-    #hub_private_repo=True,                  # Use a private hub repo
+    #hub_private_repo=private,                  # Use a private hub repo
     #hub_model_id=f'{repo_ID}/{FT_model_name}' # Hub model ID
 )
 
@@ -106,7 +107,7 @@ trainer = ActiveORPOTrainer(
 )
 ```
 
-Training loop
+Training loop:
 
 ```python
 # Configuration
@@ -148,8 +149,8 @@ for iteration in range(num_iterations):
     
     # Save the model
     trainer.save_model(f"./{FT_model_name}")
-    model.push_to_hub(f"lamm-mit/{FT_model_name}", private=True)
-    tokenizer.push_to_hub(f"lamm-mit/{FT_model_name}", private=True)
+    model.push_to_hub(f"lamm-mit/{FT_model_name}", private=private)
+    tokenizer.push_to_hub(f"lamm-mit/{FT_model_name}", private=private)
     
     # Update the dataset
     trainer.update_dataset()
@@ -216,6 +217,7 @@ cfg = DPOConfig(
 topics = 50
 num_questions_per_topic = 1
 num_epochs_per_dataset_generation = 2
+private = True #whether or not HF repos are private
 
 # Calculate number of steps
 if isinstance(topics, list) and all(isinstance(t, str) for t in topics):
@@ -276,7 +278,6 @@ for iteration in range(num_iterations):
     
     # Prompts and text generation
     prompts = [
-        'Tell me why hierarchical structures work so well.',
         f'Tell me why hierarchical structures work so well. Use {think_start}.',
         f'Explain the relationship between materials and music. Use {think_start}.'
     ]
@@ -300,8 +301,8 @@ for iteration in range(num_iterations):
 
     # Save the model
     trainer.save_model(f"./{FT_model_name}")
-    model.push_to_hub(f"{repo_id}/{FT_model_name}", private=True, commit_message=f'iteration_{iteration + 1}')
-    tokenizer.push_to_hub(f"{repo_id}/{FT_model_name}", private=True, commit_message=f'iteration_{iteration + 1}')
+    model.push_to_hub(f"{repo_id}/{FT_model_name}", private=private, commit_message=f'iteration_{iteration + 1}')
+    tokenizer.push_to_hub(f"{repo_id}/{FT_model_name}", private=private, commit_message=f'iteration_{iteration + 1}')
 
     # Save training logs
     try:
