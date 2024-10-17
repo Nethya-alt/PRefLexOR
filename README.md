@@ -18,10 +18,12 @@ Figure 2: PRefLexOR Recursive Reasoning Algorithm: An iterative approach leverag
 
 ```bibtex
 @article{buehler2024PRefLexOR,
-	author={Markus J. Buehler},
-	title={PRefLexOR: Preference-based Recursive Language Modeling for Exploratory Optimization of Reasoning and Agentic Thinking},
-	journal={arXiv,
-	year={2024},
-	url={},
+      title={PRefLexOR: Preference-based Recursive Language Modeling for Exploratory Optimization of Reasoning and Agentic Thinking}, 
+      author={Markus J. Buehler},
+      year={2024},
+      eprint={2410.12375},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/2410.12375}, 
 }
 ```
