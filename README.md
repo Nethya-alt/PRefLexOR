@@ -14,6 +14,136 @@ Figure 1: Illustration of the workflow and design principles behind generative m
 
 Figure 2: PRefLexOR Recursive Reasoning Algorithm: An iterative approach leveraging a fine-tuned Reasoning Model and a general-purpose Critic Model to generate, refine, and optionally integrate responses. The process involves generating initial responses, extracting reflections, improving thinking processes, and creating new responses based on refined thinking, with an optional final integration step. The algorithm relies on extracting thinking processes (indicated via ```<|thinking|>...<|/thinking|>```) and reflection processes  (indicated via ```<|reflect|>...<|/reflect|>```). The use of special tokens allows us to easily construct such agentic modeling as it facilitates pausing inference, improving the strategy, and re-generating improved answers. The sampled responses can either be used in their final state or integrated into an amalgamated response that shows very rich facets in the scientific process.  
 
+# Installation
+
+# Example codes
+
+More will be added shortly, including full notebooks. Here are code snippets that show how the trainers are initialized and used. 
+
+```python
+from trl import ORPOConfig
+from transformers import TrainingArguments
+from datasets import load_dataset, concatenate_datasets
+
+# Import PRefLexOR trainer classes and utils
+from active_trainer import *
+from utils import *
+
+# Configuration
+FT_model_name = 'PRefLexOR_ORPO_Model'
+repo_ID='lamm-mit'
+max_prompt_length = 512
+max_length = 1024
+
+# Adjust learning rate based on LoRA usage
+learning_rate = 5e-5 if use_LoRA else 5e-6
+
+# ORPO Configuration
+cfg = ORPOConfig(
+    output_dir=FT_model_name,               # Output directory
+    num_train_epochs=1,                     # Number of training epochs
+    per_device_train_batch_size=1,          # Batch size per device during training
+    gradient_accumulation_steps=2,          # Steps before a backward/update pass
+    gradient_checkpointing=False,           # Use gradient checkpointing to save memory
+    optim="adamw_torch_fused",              # Fused adamw optimizer
+    logging_steps=10,                       # Log every X steps
+    bf16=True,                              # Use bfloat16 precision
+    learning_rate=learning_rate,            # Learning rate
+    warmup_ratio=0,                         # Warmup ratio
+    warmup_steps=0,                         # Warmup steps
+    lr_scheduler_type="constant",           # Learning rate scheduler type
+    max_prompt_length=max_prompt_length,    # Max length for prompts
+    remove_unused_columns=False,
+    max_length=max_length,                  # Max length for outputs
+    beta=0.1,                               # ORPO beta
+    save_total_limit=3,                     # Limit on total saved models
+    save_strategy="no",                     # Save strategy
+    #hub_private_repo=True,                  # Use a private hub repo
+    #hub_model_id=f'{repo_ID}/{FT_model_name}' # Hub model ID
+)
+
+# Dataset and training parameters
+topics = 50
+num_questions_per_topic = 1
+num_epochs_per_dataset_generation = 2
+
+# Calculate number of steps
+if isinstance(topics, list) and all(isinstance(t, str) for t in topics):
+    n_steps = len(topics) * num_questions_per_topic * num_epochs_per_dataset_generation
+else:
+    n_steps = topics * num_questions_per_topic * num_epochs_per_dataset_generation
+
+# Trainer setup
+trainer = ActiveORPOTrainer(
+    model=model,
+    args=cfg,
+    train_dataset=temp,
+    tokenizer=tokenizer,
+    n_steps=n_steps,                        # Train for n_steps before updating dataset
+    topics=topics,
+    number_nodes_to_get=3,
+    n_questions_for_each=num_questions_per_topic,
+    only_include_wrong_answers=False,
+    process=process,
+    generate_dataset=generate_dataset,
+    generate=generate_GPT_MistralRS,        # Function for generating datasets
+    index=index,
+    get_rejected_from_trained_model=True,
+)
+```
+
+Training loop
+
+```python
+# Configuration
+system_prompt = 'You are a materials scientist.'
+num_iterations = 50  # Number of iterations for the training loop
+
+# Training Loop
+for iteration in range(num_iterations):
+    print(f"Starting iteration {iteration + 1}/{num_iterations}")
+    
+    # Train for N steps (no specific steps defined here, but you can update it if needed to train for different steps in different iterations)
+    n_steps = None
+    trainer.train(n_steps=n_steps)
+    
+    print("#" * 64)
+    
+    # Prompts and text generation examples
+    prompts = [
+        f'Tell me why hierarchical structures work so well. Use {think_start}.',
+        f'What is the relationship between materials and music? Use {think_start}.',
+    ]
+    
+    for txt in prompts:
+        output_text, _ = generate_local_model(
+            model=model,
+            tokenizer=tokenizer,
+            prompt=txt,
+            system_prompt=system_prompt,
+            prepend_response=f'{think_start}' if "Use" in txt else '',
+            num_return_sequences=1,
+            repetition_penalty=1.0,
+            temperature=0.1,
+            max_new_tokens=1024,
+            messages=[],
+            do_sample=True,
+        )
+        print(output_text)
+        print("-" * 64)
+    
+    # Save the model
+    trainer.save_model(f"./{FT_model_name}")
+    model.push_to_hub(f"lamm-mit/{FT_model_name}", private=True)
+    tokenizer.push_to_hub(f"lamm-mit/{FT_model_name}", private=True)
+    
+    # Update the dataset
+    trainer.update_dataset()
+    
+    print(f"Completed iteration {iteration + 1}/{num_iterations}")
+    print("#" * 64)
+```
+
 ### Reference
 
 ```bibtex
