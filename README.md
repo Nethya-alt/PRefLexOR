@@ -15,6 +15,13 @@ Figure 2: PRefLexOR Recursive Reasoning Algorithm: An iterative approach leverag
 
 ## Installation
 
+### 1. Clone the Repository
+First, clone the repository using `git`:
+```bash
+git clone https://github.com/lamm-mit/PRefLexOR.git
+cd PRefLexOR
+```
+
 ## Example codes
 More will be added shortly, including full notebooks. Here are code snippets that show how the trainers are initialized and used. 
 
