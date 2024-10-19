@@ -28,6 +28,10 @@ More will be added shortly, including full notebooks. Here are code snippets tha
 
 Figure 3: Overview of the PRefLexOR algorithm, consisting of Base Model Pre-training/Incipient Fine-tuning, Structured Thought Integration Training, Independent Reasoning Development, and the Recursive Reasoning Algorithm. Each phase can be scaled independently with additional compute to improve performance.
 
+## Model weights
+
+Model weights for trained example models will be released shortly via Hugging Face. 
+
 ### RRefLexOR Structured Thought Integration Training via Odds Ratio Preference Optimization (ORPO) phase
 
 ```python
