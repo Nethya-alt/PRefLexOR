@@ -33,7 +33,10 @@ pip install -e .
 
 ### Flash Attention
 
-Install flash attention (https://github.com/Dao-AILab/flash-attention) if you want to use that option.
+Install flash attention (https://github.com/Dao-AILab/flash-attention) if you want to use that option:
+```bash
+MAX_JOBS=4 pip install flash-attn --no-build-isolation
+```
 
 ### Directory structure
 ```
