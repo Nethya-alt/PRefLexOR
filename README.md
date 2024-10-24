@@ -84,7 +84,7 @@ from transformers import TrainingArguments
 from datasets import load_dataset, concatenate_datasets
 
 # Import PRefLexOR trainer classes and utils
-from active_trainer import *
+from PRefLexOR import *
 from utils import *
 
 # Configuration
@@ -137,7 +137,7 @@ else:
     n_steps = topics * num_questions_per_topic * num_epochs_per_dataset_generation
 
 # Trainer setup
-trainer = ActiveORPOTrainer(
+trainer = PRefLexORORPOTrainer(
     model=model,
     args=cfg,
     train_dataset=temp,
@@ -213,6 +213,7 @@ import json
 from trl import DPOConfig, DPOTrainer
 from transformers import TrainingArguments
 from datasets import load_dataset, concatenate_datasets
+from PRefLexOR import *
 
 # Reward Logging Callback
 class RewardLoggingCallback(TrainerCallback):
@@ -274,7 +275,7 @@ else:
     n_steps = topics * num_questions_per_topic * num_epochs_per_dataset_generation
 
 # Trainer setup
-trainer = ActiveDPOTrainer(
+trainer =PRefLexORDPOTrainer(
     model=model,
     ref_model=ref_model,                      # Set to None if using PEFT
     args=cfg,
