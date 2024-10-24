@@ -13,6 +13,8 @@ Figure 1: Illustration of the workflow and design principles behind generative m
 
 Figure 2: PRefLexOR Recursive Reasoning Algorithm: An iterative approach leveraging a fine-tuned Reasoning Model and a general-purpose Critic Model to generate, refine, and optionally integrate responses. The process involves generating initial responses, extracting reflections, improving thinking processes, and creating new responses based on refined thinking, with an optional final integration step. The algorithm relies on extracting thinking processes (indicated via ```<|thinking|>...<|/thinking|>```) and reflection processes  (indicated via ```<|reflect|>...<|/reflect|>```). The use of special tokens allows us to easily construct such agentic modeling as it facilitates pausing inference, improving the strategy, and re-generating improved answers. The sampled responses can either be used in their final state or integrated into an amalgamated response that shows very rich facets in the scientific process.  
 
+![image](https://github.com/user-attachments/assets/b63a5a7c-465e-4117-aed7-10f74378eed7)
+
 ## Installation
 
 Install:
