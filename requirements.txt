@@ -1,7 +1,7 @@
 torch
 transformers
 peft 
-trainer
+trl
 accelerate
 bitsandbytes
 matplotlib
