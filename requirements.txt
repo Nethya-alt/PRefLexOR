@@ -6,3 +6,9 @@ accelerate
 bitsandbytes
 matplotlib
 tqdm
+openai 
+llama-index-program-openai
+llama-index-core 
+llama-index-readers-file 
+llama-index-embeddings-huggingface 
+wordnet
