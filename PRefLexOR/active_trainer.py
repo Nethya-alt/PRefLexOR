@@ -35,7 +35,7 @@ from transformers import (
     is_wandb_available,
 )
  
-class ActiveORPOTrainer(ORPOTrainer):
+class PRefLexORORPOTrainer(ORPOTrainer):
     def __init__(
         self,
         model: Union[PreTrainedModel, torch.nn.Module],
@@ -440,7 +440,7 @@ from transformers import (
     is_wandb_available,
 )
 
-class ActiveDPOTrainer(DPOTrainer):
+class PRefLexORDPOTrainer(DPOTrainer):
     def __init__(
         self,
         model: Union[PreTrainedModel, torch.nn.Module],
