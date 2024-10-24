@@ -78,7 +78,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True,
                                          )
 ```
 
-### RRefLexOR Structured Thought Integration Training via Odds Ratio Preference Optimization (ORPO) phase
+### PRefLexOR Structured Thought Integration Training via Odds Ratio Preference Optimization (ORPO) phase
 
 ```python
 from trl import ORPOConfig
@@ -389,6 +389,9 @@ for iteration in range(num_iterations):
     print(f"Completed iteration {iteration + 1}/{num_iterations}")
     print("#" * 64)
 ```
+## Colab example
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lamm-mit/PRefLexOR/blob/main/PRefLexOR_inference_thinking.ipynb)
 
 ### Reference
 
