@@ -20,6 +20,30 @@ Clone the repository using `git`:
 git clone https://github.com/lamm-mit/PRefLexOR.git
 cd PRefLexOR
 ```
+Then, install:
+```bash
+pip install -r requirements.txt
+pip install .
+```
+or
+```bash
+pip install -e .
+```
+
+### Directory structure
+```
+PRefLexOR/
+│
+├── PRefLexOR/               # Your source code directory
+│   ├── active_trainer.py
+│   ├── inference.py
+│   └── utils.py
+│
+├── setup.py                 # The setup file for packaging
+├── requirements.txt         # List of dependencies
+├── README.md                # (Optional) Documentation
+└── ...
+```
 
 ## Example codes
 More will be added shortly, including full notebooks. Here are code snippets that show how the trainers are initialized and used. 
