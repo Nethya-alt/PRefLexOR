@@ -2,8 +2,8 @@
 # Inference codes
 ###############################################################
 
-from utils import *
-from active_trainer import *
+from .utils import *
+from .active_trainer import *
 
 from tqdm.notebook import tqdm
 
@@ -59,9 +59,6 @@ Provide feedback and suggestions for how to improve the thought process, and not
 
         if verbatim:
             print (64*"#"+f"\n>>>REFLECT SYNTHETIC #{i}", reflect)
-
-
-        
 
         txt=f'''I will show you a thought process and feedback. Carefully implement the feedback and improve the thought process by addressing all suggestions, but keep the overall structure the same.
 
