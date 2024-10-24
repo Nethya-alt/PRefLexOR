@@ -35,14 +35,14 @@ pip install -e .
 ```
 PRefLexOR/
 │
-├── PRefLexOR/               # Your source code directory
+├── PRefLexOR/               # Source code directory
 │   ├── active_trainer.py
 │   ├── inference.py
 │   └── utils.py
 │
 ├── setup.py                 # The setup file for packaging
 ├── requirements.txt         # List of dependencies
-├── README.md                # (Optional) Documentation
+├── README.md                # Documentation
 └── ...
 ```
 
