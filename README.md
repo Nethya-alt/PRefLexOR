@@ -31,6 +31,10 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
+### Flash Attention
+
+Install flash attention (https://github.com/Dao-AILab/flash-attention) if you want to use that option.
+
 ### Directory structure
 ```
 PRefLexOR/
