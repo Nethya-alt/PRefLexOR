@@ -1,6 +1,10 @@
-from llama_index.core.indices.vector_store.retrievers import VectorIndexRetriever
+#####################################################
+# PRefLexOR utilities
+#####################################################
 
+from llama_index.core.indices.vector_store.retrievers import VectorIndexRetriever
 import torch
+import re
 
 def get_nodes_for_topic (index, topic, number_nodes_to_get=5 ):
      
@@ -84,8 +88,6 @@ def generate_OpenAI ( system_prompt='You are a materials scientist.',
                 })
     
     return response, messages
-
-import re
 
 def extract_text(response, thinking_start="<|thinking|>", thinking_end="<|/thinking|>"):
     """

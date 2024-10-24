@@ -1,5 +1,9 @@
 #####################################################
-# Active OPRO
+# PRefLexOR Trainer classes
+#####################################################
+
+#####################################################
+# PRefLexOR OPRO
 #####################################################
 
 from trl import ORPOTrainer, ORPOConfig
@@ -31,7 +35,6 @@ from transformers import (
     is_wandb_available,
 )
  
-
 class ActiveORPOTrainer(ORPOTrainer):
     def __init__(
         self,
@@ -405,7 +408,7 @@ class ActiveORPOTrainer(ORPOTrainer):
                 batch[key][i] = labels_tensor.tolist()
 
 #####################################################
-# Active DPO
+# PRefLexOR DPO
 #####################################################
 
 from trl import DPOTrainer
