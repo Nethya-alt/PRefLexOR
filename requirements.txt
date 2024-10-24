@@ -1,4 +1,8 @@
 torch
 transformers
+peft 
+trainer
+accelerate
+bitsandbytes
 matplotlib
 tqdm
