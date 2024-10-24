@@ -35,8 +35,7 @@ def recursive_response_from_thinking (model, tokenizer, model_critic, tokenizer_
     answer_only=extract_text(output_text, thinking_start=thinking_end, thinking_end="NONE")
     output_list.append (answer_only)
     
-    #reflect=extract_text(output_text, thinking_start="<|reflect|>", thinking_end="<|/reflect|>")[0]
-    for i in tqdm(range (N),desc=f"Recursive self-improvement"):
+    for i in tqdm(range (N-1),desc=f"Recursive self-improvement"):
         if verbatim:
             print (64*"#"+f"\n>>>OUTPUT #{i}", output_text)
 
@@ -84,7 +83,7 @@ Provide the improved thought process, and nothing else. The revised thought proc
          
         output_text, _ =generate_local_model (model=model, tokenizer=tokenizer,  prompt=txt,
                                                    system_prompt=system_prompt,   prepend_response=prepend,
-                                       num_return_sequences=1,  repetition_penalty=1.0, #top_p=top_p, top_k=top_k,  
+                                       num_return_sequences=1,  repetition_penalty=1.0, 
                                        temperature=temperature,max_new_tokens=max_new_tokens, messages = [], do_sample=True,
                                        )
 
@@ -105,10 +104,7 @@ QUESTION: {question}
 
 '''
     
-    for i, item in tqdm(enumerate(output_list),desc=f"Integrating all responses into one final answer. "):
-
-        
-        #answer_only=extract_text(item, thinking_start="<|/thinking|>", thinking_end="NONE")
+    for i, item in tqdm(enumerate(output_list),desc=f"Integrating all responses into one final answer. "):      
         txt=txt+f'ANSWER #{i}: {item.strip()}\n\n'
     txt=txt+'''Carefully incorporate all ideas presented in the answer candidates into a very detailed, final answer. 
 
@@ -118,13 +114,12 @@ The answer is: '''
 
     output_text_integrated, _ =generate_local_model (model=model_critic, tokenizer=tokenizer_critic,  prompt=txt,
                                                    system_prompt=system_prompt_integrator,   prepend_response='',
-                                       num_return_sequences=1,  repetition_penalty=1.0, #top_p=top_p, top_k=top_k,  
+                                       num_return_sequences=1,  repetition_penalty=1.0, 
                                        temperature=temperature_improvement,max_new_tokens=max_new_tokens, messages = [], do_sample=True,
                                        )
         
 
     return output_text, output_list, output_text_integrated
-
 
 ###############################################################
 # Recusirve inference from thinking.../thinking and reflection.../reflection 
@@ -164,9 +159,10 @@ Feedback: {reflect}
 Provide the improved thought process, and nothing else. The revised thought process is:
 '''
         improved_thought, _ =generate_local_model (model=model_critic, tokenizer=tokenizer_critic,  prompt=txt,
-                                                   system_prompt=system_prompt_critic,  
+                                       system_prompt=system_prompt_critic,  
                                        num_return_sequences=1,  repetition_penalty=1.0,    
-                                       temperature=temperature_improvement,max_new_tokens=max_new_tokens, messages = [], do_sample=True,
+                                       temperature=temperature_improvement,max_new_tokens=max_new_tokens, messages = [],
+                                       do_sample=True,
                                        )
         if verbatim:
             print ("**IMPROVED THOUGHT: ", improved_thought)
@@ -175,7 +171,7 @@ Provide the improved thought process, and nothing else. The revised thought proc
          
         output_text, messages =generate_local_model (model=model, tokenizer=tokenizer,  prompt=txt,
                                                    system_prompt=system_prompt,   prepend_response=prepend,
-                                       num_return_sequences=1,  repetition_penalty=1.0, #top_p=top_p, top_k=top_k,  
+                                       num_return_sequences=1,  repetition_penalty=1.0,   
                                        temperature=temperature,max_new_tokens=max_new_tokens, messages = [], do_sample=True,
                                        )
         ### For next iteration, use updated thinking, and reflections
@@ -200,8 +196,9 @@ QUESTION: {question}
 
     output_text_integrated, _ =generate_local_model (model=model_critic, tokenizer=tokenizer_critic,  prompt=txt,
                                                    system_prompt=system_prompt_integrator,   prepend_response='',
-                                       num_return_sequences=1,  repetition_penalty=1.0, #top_p=top_p, top_k=top_k,  
-                                       temperature=temperature_improvement,max_new_tokens=max_new_tokens, messages = [], do_sample=True,
+                                       num_return_sequences=1,  repetition_penalty=1.0, 
+                                       temperature=temperature_improvement,max_new_tokens=max_new_tokens, messages = [],
+                                        do_sample=True,
                                        )
         
 
