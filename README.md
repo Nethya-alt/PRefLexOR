@@ -62,7 +62,19 @@ Figure 3: Overview of the PRefLexOR algorithm, consisting of Base Model Pre-trai
 
 ## Model weights
 
-Model weights for trained example models will be released shortly via Hugging Face. 
+Model weightsare available via Hugging Face. For example:
+
+```python
+from transformers import AutoModelForCausalLM, AutoTokenizer
+model_name='lamm-mit/PRefLexOR_ORPO_DPO_EXO_10242024'
+model = AutoModelForCausalLM.from_pretrained(model_name,     
+    torch_dtype =torch.bfloat16,
+    attn_implementation="flash_attention_2",device_map="auto",trust_remote_code=True,
+    )
+tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True,
+                                          use_fast=False,
+                                         )
+```
 
 ### RRefLexOR Structured Thought Integration Training via Odds Ratio Preference Optimization (ORPO) phase
 
