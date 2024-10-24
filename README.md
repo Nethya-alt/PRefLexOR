@@ -15,7 +15,12 @@ Figure 2: PRefLexOR Recursive Reasoning Algorithm: An iterative approach leverag
 
 ## Installation
 
-Clone the repository using `git`:
+Install:
+```bash
+pip install git+https://github.com/lamm-mit/PRefLexOR.git
+
+```
+If you want to create an editable installation, clone the repository using `git`:
 ```bash
 git clone https://github.com/lamm-mit/PRefLexOR.git
 cd PRefLexOR
@@ -23,10 +28,6 @@ cd PRefLexOR
 Then, install:
 ```bash
 pip install -r requirements.txt
-pip install .
-```
-or
-```bash
 pip install -e .
 ```
 
