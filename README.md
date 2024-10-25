@@ -389,9 +389,13 @@ for iteration in range(num_iterations):
     print(f"Completed iteration {iteration + 1}/{num_iterations}")
     print("#" * 64)
 ```
-## Colab example
+## Colab example: Inference notebooks
 
+#### PRefLexOR Inference: Thinking and Agentic Reflection 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lamm-mit/PRefLexOR/blob/main/PRefLexOR_inference_thinking.ipynb)
+
+#### PRefLexOR Inference: Thinking and Reflection and Agentic Reasoning 
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lamm-mit/PRefLexOR/blob/main/PRefLexOR_inference_thinking-reflection.ipynb)
 
 ### Reference
 
