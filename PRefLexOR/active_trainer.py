@@ -413,7 +413,7 @@ class PRefLexORORPOTrainer(ORPOTrainer):
 
 from trl import DPOTrainer
 #from trl.trainer.dpo_trainer import _tokenize
-from trl.trainer.dpo_trainer import  _process_prompt, _process_answer, _adjust_prompt_length, _adjust_prompt_length, _add_special_tokens, _truncate_tokens, _append_prompt_tokens_to_batch, _build_tokenized_answer, _build_sequence_tokens
+#from trl.trainer.dpo_trainer import  _process_prompt, _process_answer, _adjust_prompt_length, _adjust_prompt_length, _add_special_tokens, _truncate_tokens, _append_prompt_tokens_to_batch, _build_tokenized_answer, _build_sequence_tokens
  
 from datasets import Dataset
 from typing import Dict, List, Union, Optional
