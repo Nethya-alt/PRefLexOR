@@ -409,4 +409,14 @@ for iteration in range(num_iterations):
       primaryClass={cs.AI},
       url={https://arxiv.org/abs/2410.12375}, 
 }
+
+@article{buehler2025GraphPRefLexOR,
+      title={In-situ Graph Reasoning and Knowledge Expansion using Graph-PReFLexOR }, 
+      author={Markus J. Buehler},
+      year={2025},
+      eprint={XXX.YYYYY},
+      archivePrefix={arXiv},
+      primaryClass={cs.AI},
+      url={https://arxiv.org/abs/XXX.YYYYY}, 
+}
 ```
