@@ -398,7 +398,13 @@ for iteration in range(num_iterations):
 #### PRefLexOR Inference: Thinking and Reflection and Agentic Reasoning 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lamm-mit/PRefLexOR/blob/main/PRefLexOR_inference_thinking-reflection.ipynb)
 
-### Reference
+## Graph-PRefLexOR
+
+<img width="444" alt="fig_2000_C" src="https://github.com/user-attachments/assets/2c9aa8f2-c939-43b6-be22-6923a4b43906" />
+
+Sample graph generated based on autonomous extended reasoning (see: ```https://arxiv.org/abs/2502.13025```). 
+
+### References
 
 ```bibtex
 @article{buehler2024PRefLexOR,
@@ -419,5 +425,14 @@ for iteration in range(num_iterations):
       archivePrefix={arXiv},
       primaryClass={cs.AI},
       url={https://arxiv.org/abs/2501.08120}, 
+}
+
+@misc{buehler2025agentic,
+    title={Agentic Deep Graph Reasoning Yields Self-Organizing Knowledge Networks},
+    author={Markus J. Buehler},
+    year={2025},
+    eprint={2502.13025},
+    archivePrefix={arXiv},
+    primaryClass={cs.AI}
 }
 ```
