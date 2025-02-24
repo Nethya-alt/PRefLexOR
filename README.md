@@ -400,7 +400,7 @@ for iteration in range(num_iterations):
 
 ## Graph-PRefLexOR
 
-<img width="444" alt="fig_2000_C" src="https://github.com/user-attachments/assets/2c9aa8f2-c939-43b6-be22-6923a4b43906" />
+![image](https://github.com/user-attachments/assets/e98d120a-067e-4825-a6c4-64c8f0cde8f8)
 
 Sample graph generated based on autonomous extended reasoning (see: ```https://arxiv.org/abs/2502.13025```). 
 
