@@ -1,0 +1,34 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "PRefLexOR: Transparent AI Reasoning"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: technical-deep-dive.qmd
+        text: Technical Deep Dive
+      - href: visual-guide.qmd
+        text: Implementation Guide
+      - href: executive-summary.qmd
+        text: Executive Summary
+      - href: test-mermaid.qmd
+        text: Test Mermaid
+    right:
+      - icon: github
+        href: https://github.com/apingali/PRefLexOR
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    code-fold: true
+    code-tools: true
+    mermaid:
+      theme: default
+
+execute:
+  freeze: auto

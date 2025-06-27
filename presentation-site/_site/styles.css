@@ -1,0 +1,286 @@
+/* Custom styles for PRefLexOR presentation */
+
+/* Main typography */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Headers */
+h1 {
+    color: #2e8b57;
+    border-bottom: 3px solid #2e8b57;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    color: #1f5f3f;
+    margin-top: 2rem;
+}
+
+h3 {
+    color: #2c6e49;
+}
+
+/* Code blocks with thinking tags */
+pre code {
+    font-size: 0.9rem;
+}
+
+.thinking-block {
+    background-color: #f8f9fa;
+    border-left: 4px solid #2e8b57;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+}
+
+/* Comparison tables */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.comparison-table th {
+    background-color: #2e8b57;
+    color: white;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.comparison-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.comparison-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Alert boxes */
+.alert-box {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.25rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+/* Mermaid diagram containers */
+.mermaid {
+    margin: 1.5rem 0;
+    text-align: center;
+    background-color: transparent !important;
+}
+
+/* Ensure Mermaid diagrams are visible */
+div.mermaid {
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Fix any potential z-index issues */
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Key feature boxes */
+.feature-box {
+    border: 2px solid #2e8b57;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    background-color: #f0f8f4;
+}
+
+.feature-box h4 {
+    color: #1f5f3f;
+    margin-top: 0;
+    font-weight: 600;
+}
+
+.feature-box h3 {
+    color: #1f5f3f;
+    font-weight: 600;
+}
+
+.feature-box p,
+.feature-box li {
+    color: #000000;
+}
+
+/* Navigation improvements */
+.navbar {
+    background-color: #2e8b57 !important;
+}
+
+.navbar-brand, .navbar-nav .nav-link {
+    color: white !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #d4edda !important;
+}
+
+/* Sidebar styling */
+.sidebar {
+    background-color: #f8f9fa;
+}
+
+.sidebar-item-text {
+    color: #2e8b57;
+}
+
+/* ROI and metrics styling */
+.metric-card {
+    background-color: #ffffff;
+    border: 2px solid #2e8b57;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(46, 139, 87, 0.1);
+}
+
+.metric-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f5f3f;
+}
+
+.metric-label {
+    color: #000000;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Code comparison styling */
+.code-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.code-block-bad {
+    border: 2px solid #dc3545;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #fff5f5;
+}
+
+.code-block-good {
+    border: 2px solid #28a745;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    background-color: #f5fff5;
+}
+
+/* Executive summary highlights - High contrast version */
+.highlight-box {
+    background: #e7f3ff;
+    color: #000000 !important;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin: 2rem 0;
+    text-align: center;
+    border: 3px solid #2e8b57;
+    box-shadow: 0 4px 8px rgba(46, 139, 87, 0.2);
+}
+
+.highlight-box h1,
+.highlight-box h2,
+.highlight-box h3,
+.highlight-box p,
+.highlight-box span {
+    color: #000000 !important;
+    border: none !important;
+}
+
+.highlight-box h1 {
+    color: #2e8b57 !important;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.highlight-box h2 {
+    color: #1f5f3f !important;
+    border: none !important;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Alternative dark version (comment out light version above to use) */
+/*
+.highlight-box {
+    background: linear-gradient(135deg, #2e8b57 0%, #1f5f3f 100%);
+    color: #ffffff !important;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin: 2rem 0;
+    text-align: center;
+    border: 2px solid #1f5f3f;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-box h1,
+.highlight-box h2,
+.highlight-box h3,
+.highlight-box p,
+.highlight-box span {
+    color: #ffffff !important;
+    border: none !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.highlight-box h2 {
+    color: #ffffff !important;
+    border: none !important;
+    margin-bottom: 1rem;
+}
+*/
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .code-comparison {
+        grid-template-columns: 1fr;
+    }
+    
+    .navbar-nav {
+        text-align: center;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar, .sidebar {
+        display: none;
+    }
+    
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    .mermaid {
+        page-break-inside: avoid;
+    }
+}

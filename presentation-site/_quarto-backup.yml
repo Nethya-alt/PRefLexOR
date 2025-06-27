@@ -1,0 +1,64 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "PRefLexOR: Transparent AI Reasoning"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: technical-deep-dive.qmd
+        text: Technical Deep Dive
+      - href: visual-guide.qmd
+        text: Implementation Guide
+      - href: executive-summary.qmd
+        text: Executive Summary
+    right:
+      - icon: github
+        href: https://github.com/apingali/PRefLexOR
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "Overview"
+        contents:
+          - index.qmd
+          - executive-summary.qmd
+      - section: "Technical Documentation"
+        contents:
+          - technical-deep-dive.qmd
+          - visual-guide.qmd
+      - section: "Business Applications"
+        contents:
+          - text: "Financial Risk Assessment"
+            href: technical-deep-dive.qmd#financial-risk-assessment
+          - text: "Medical Diagnosis Support"
+            href: technical-deep-dive.qmd#medical-diagnosis-support
+          - text: "Supply Chain Risk"
+            href: technical-deep-dive.qmd#supply-chain-risk-management
+          - text: "Legal Document Analysis"
+            href: technical-deep-dive.qmd#legal-document-analysis
+          - text: "Investment Research"
+            href: technical-deep-dive.qmd#investment-research
+          - text: "Product Development"
+            href: technical-deep-dive.qmd#product-development-strategy
+
+format:
+  html:
+    theme: 
+      light: cosmo
+      dark: darkly
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    toc-location: right
+    code-fold: true
+    code-summary: "Show code"
+    code-tools: true
+    code-copy: true
+    code-line-numbers: true
+    highlight-style: github
+
+execute:
+  freeze: auto

@@ -1,0 +1,57 @@
+---
+title: "Mermaid Test Page"
+format: html
+---
+
+## Testing Mermaid Diagrams
+
+### Simple Flowchart
+```{mermaid}
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%
+flowchart LR
+    A[Start] --> B[Process]
+    B --> C[End]
+    
+    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000
+    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
+    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+```
+
+### Graph with Styling
+```{mermaid}
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%
+graph TD
+    A[Input] --> B{Decision}
+    B -->|Yes| C[Process A]
+    B -->|No| D[Process B]
+    C --> E[Output]
+    D --> E
+    
+    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000
+    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
+    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000
+    style E fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+```
+
+### Alternative to Mindmap (Graph Format)
+```{mermaid}
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%
+graph TD
+    A[AI Systems] --> B[Traditional AI]
+    A --> C[PRefLexOR]
+    B --> D[Black Box]
+    B --> E[No Transparency]
+    C --> F[Thinking Tokens]
+    C --> G[Full Transparency]
+    
+    style A fill:#2e8b57,stroke:#1f5f3f,stroke-width:3px,color:#fff
+    style B fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000
+    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+    style D fill:#dc3545,stroke:#dc3545,stroke-width:2px,color:#fff
+    style E fill:#dc3545,stroke:#dc3545,stroke-width:2px,color:#fff
+    style F fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff
+    style G fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff
+```
+
+If you can see the diagrams above, Mermaid is working correctly!
