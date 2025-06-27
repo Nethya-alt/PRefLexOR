@@ -104,26 +104,27 @@ def assess_loan_preflexor(application):
 ```{mermaid}
 %%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%
 graph TB
-    subgraph "Risk Assessment Matrix"
-        A[Credit Score: 750] --> E[LOW RISK]
-        B[DTI Ratio: 35%] --> E
-        C[Employment: 5 years] --> E
-        D[Down Payment: 20%] --> E
-    end
-    
-    subgraph "Decision Output"
-        E --> F[Approved]
-        E --> G[Rate: 4.5%]
-        E --> H[Full Documentation]
-    end
-    
-    style A fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
-    style B fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
-    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
-    style D fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
-    style E fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000
-    style F fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+  subgraph RiskMatrix["Risk Assessment Matrix"]
+    A[Credit Score: 750] --> E[LOW RISK]
+    B[DTI Ratio: 35%] --> E
+    C[Employment: 5 years] --> E
+    D[Down Payment: 20%] --> E
+  end
+
+  subgraph DecisionOutput["Decision Output"]
+    E --> F[Approved]
+    E --> G[Rate: 4.5%]
+    E --> H[Full Documentation]
+  end
+
+  style A fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+  style B fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+  style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+  style D fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+  style E fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000
+  style F fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
 ```
+
 
 ## Implementation Example 2: Medical Diagnosis Support
 
@@ -187,7 +188,7 @@ class PRefLexORMedicalAI:
 graph TD
     A[Patient: Chest pain, 45yo male] --> B{Clinical Analysis}
     
-    B --> C[<|thinking|> Risk Assessment]
+    B --> C[Risk Assessment Thinking]
     C --> D[Cardiac: 30%]
     C --> E[Pulmonary: 15%]
     C --> F[GI: 20%]
@@ -202,6 +203,7 @@ graph TD
     style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000
     style I fill:#ffebee,stroke:#dc3545,stroke-width:3px,color:#000
 ```
+
 
 ## Implementation Example 3: Supply Chain Risk
 
@@ -253,22 +255,69 @@ class SupplyChainRiskAnalyzer:
 
 ### Risk Dashboard Visualization
 
+
+```{mermaid}
+%%{init: {'theme':'base', 'themeVariables': {
+  'primaryColor':'#ffffff',
+  'primaryTextColor':'#000000',
+  'primaryBorderColor':'#2e8b57',
+  'lineColor':'#2e8b57'
+}}}%%
+graph LR
+  subgraph RiskFactors["Risk Factors"]
+    A[Geopolitical: 8/10]
+    B[Financial: 4/10]
+    C[Operational: 6/10]
+    D[Dependency: 8/10]
+  end
+
+  subgraph Analysis["Analysis"]
+    E[Weighted Score: 6.2/10]
+    F[Risk Level: MEDIUM]
+  end
+
+  subgraph Actions["Actions"]
+    G[Find Alternatives]
+    H[Increase Buffer]
+    I[Monitor Closely]
+  end
+
+  A --> E
+  B --> E
+  C --> E
+  D --> E
+  E --> F
+  F --> G
+  F --> H
+  F --> I
+
+  style A fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000
+  style B fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000
+  style C fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
+  style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000
+  style E fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000
+  style F fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
+  style G fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000
+  style H fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000
+  style I fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000
+```
+
 ```{mermaid}
 %%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%
 graph LR
-    subgraph "Risk Factors"
+    subgraph RiskFactors["Risk Factors"]
         A[Geopolitical: 8/10]
         B[Financial: 4/10]
         C[Operational: 6/10]
         D[Dependency: 8/10]
     end
     
-    subgraph "Analysis"
+    subgraph Analysis["Analysis"]
         E[Weighted Score: 6.2/10]
         F[Risk Level: MEDIUM]
     end
     
-    subgraph "Actions"
+    subgraph Actions["Actions"]
         G[Find Alternatives]
         H[Increase Buffer]
         I[Monitor Closely]
@@ -284,6 +333,7 @@ graph LR
     style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000
     style F fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000
 ```
+
 
 ## Implementation Example 4: Legal Document Analysis
 
@@ -542,30 +592,32 @@ graph LR
 ```python
 class PRefLexORPattern:
     """Universal pattern for implementing PRefLexOR reasoning"""
-    
+
     def __init__(self, domain):
         self.domain = domain
         self.reasoning_template = """
         <|thinking|>
         1. Problem Understanding:
            {problem_analysis}
-        
+
         2. Data Analysis:
            {data_evaluation}
-        
+
         3. Domain Rules Application:
            {rules_applied}
-        
+
         4. Risk Assessment:
            {risk_evaluation}
-        
+
         5. Decision Synthesis:
            {decision_logic}
         <|/thinking|>
-        
+
         {final_recommendation}
         """
 ```
+
+
 
 ### 2. Audit Trail Pattern
 
@@ -589,10 +641,11 @@ class AuditableReasoning:
 
 ### 3. Confidence Calibration Pattern
 
+
 ```python
 def calibrate_decision_confidence(reasoning_output):
     """Add confidence metrics to decisions"""
-    
+
     confidence_factors = {
         "data_completeness": assess_data_quality(),
         "reasoning_clarity": evaluate_logic_chain(),
@@ -600,9 +653,9 @@ def calibrate_decision_confidence(reasoning_output):
         "rule_compliance": verify_against_policies(),
         "uncertainty_level": measure_unknowns()
     }
-    
+
     overall_confidence = weighted_average(confidence_factors)
-    
+
     return {
         "decision": reasoning_output,
         "confidence": overall_confidence,
@@ -610,6 +663,7 @@ def calibrate_decision_confidence(reasoning_output):
         "caveats": identify_limitations()
     }
 ```
+
 
 ## Implementation Best Practices
 

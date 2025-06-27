@@ -1,131 +1,5 @@
 [
   {
-    "objectID": "diagrams-fallback.html",
-    "href": "diagrams-fallback.html",
-    "title": "",
-    "section": "",
-    "text": "Code"
-  },
-  {
-    "objectID": "diagrams-fallback.html#standard-llm-vs-preflexor-flow",
-    "href": "diagrams-fallback.html#standard-llm-vs-preflexor-flow",
-    "title": "",
-    "section": "Standard LLM vs PRefLexOR Flow",
-    "text": "Standard LLM vs PRefLexOR Flow\nStandard LLM:\nUser Input → [BLACK BOX] → Output\n     ↓           ???          ↓\n\"Approve loan\"            \"Approved\"\n\nPRefLexOR:\nUser Input → [THINKING PROCESS] → [REASONING] → Output\n     ↓              ↓                   ↓          ↓\n\"Approve loan\"  \"Check credit\"    \"Score: 750\"  \"Approved\"\n                \"Check DTI\"       \"DTI: 35%\"    \n                \"Check history\"   \"Clean: ✓\"\n                \"Apply rules\"     \"Qualified\""
-  },
-  {
-    "objectID": "diagrams-fallback.html#six-business-applications",
-    "href": "diagrams-fallback.html#six-business-applications",
-    "title": "",
-    "section": "Six Business Applications",
-    "text": "Six Business Applications\n                        PRefLexOR\n                          │\n        ┌─────────────────┼─────────────────┐\n        │                 │                 │\n   Financial        Healthcare        Supply Chain\n    Services                            \n        │                 │                 │\n   - Loan Approval   - Diagnosis       - Risk Assessment\n   - Risk Analysis   - Treatment       - Mitigation\n   - Compliance      - Documentation   - Monitoring\n        │                 │                 │\n      Legal          Investment       Product Dev\n        │                 │                 │\n   - Contract        - Analysis        - Strategy\n   - Risk Review     - Compliance      - Planning\n   - Negotiation     - Documentation   - Decisions"
-  },
-  {
-    "objectID": "diagrams-fallback.html#training-process",
-    "href": "diagrams-fallback.html#training-process",
-    "title": "",
-    "section": "Training Process",
-    "text": "Training Process\nPhase I: ORPO Training\nStandard Model → Preference Learning → Learns to Think First\n\nPhase II: DPO Refinement  \nThink First → Quality Enhancement → Production Model\n\nEnterprise Deployment\nProduction Model → Domain Config → Transparent Decisions → Audit Trails"
-  },
-  {
-    "objectID": "diagrams-fallback.html#risk-assessment-matrix",
-    "href": "diagrams-fallback.html#risk-assessment-matrix",
-    "title": "",
-    "section": "Risk Assessment Matrix",
-    "text": "Risk Assessment Matrix\nRisk Factors:           Assessment:\nGeopolitical: 8/10  →    │████████░░│ HIGH\nFinancial: 4/10     →    │████░░░░░░│ LOW  \nOperational: 6/10   →    │██████░░░░│ MED\nDependency: 8/10    →    │████████░░│ HIGH\n\nOverall Risk: MEDIUM (6.2/10)"
-  },
-  {
-    "objectID": "diagrams-fallback.html#investment-analysis-framework",
-    "href": "diagrams-fallback.html#investment-analysis-framework",
-    "title": "",
-    "section": "Investment Analysis Framework",
-    "text": "Investment Analysis Framework\nMarket Data → PRefLexOR Analysis → Investment Decision\n     ↓              ↓                       ↓\n- Stock Price  - Fundamental          - Buy/Hold/Sell\n- Financials   - Technical            - Price Target\n- News         - Risk Assessment      - Risk Level"
-  },
-  {
-    "objectID": "diagrams-fallback.html#clinical-decision-tree",
-    "href": "diagrams-fallback.html#clinical-decision-tree",
-    "title": "",
-    "section": "Clinical Decision Tree",
-    "text": "Clinical Decision Tree\nPatient Symptoms → Clinical Analysis → Diagnosis & Action\n      ↓                    ↓                  ↓\n\"Chest pain\"        Risk Assessment:    \"High Risk\"\n\"45yo male\"         - Cardiac: 30%          ↓\n                    - Pulmonary: 15%   Emergency\n                    - GI: 20%          Evaluation\n                    - Other: 35%       Required\nUse these text-based diagrams if Mermaid rendering fails."
-  },
-  {
-    "objectID": "technical-deep-dive.html",
-    "href": "technical-deep-dive.html",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "",
-    "text": "Preference-based Recursive Language Modeling for Exploratory Optimization of Reasoning\nPRefLexOR represents a fundamental shift in how AI systems make and communicate decisions. Instead of operating as black boxes, PRefLexOR models expose their reasoning process through special “thinking tokens.”\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[User Query] --&gt; B[PRefLexOR Model]\n    B --&gt; C{Thinking Process}\n    C --&gt; D[Step 1: Analyze Input]\n    C --&gt; E[Step 2: Apply Domain Rules]\n    C --&gt; F[Step 3: Evaluate Options]\n    C --&gt; G[Step 4: Risk Assessment]\n    D & E & F & G --&gt; H[Reasoning Output]\n    H --&gt; I[Final Answer]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style C fill:#ffffff,stroke:#28a745,stroke-width:3px,color:#000\n    style H fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style I fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\nStandard LLM\nQ: \"Should we approve this loan?\"\nA: \"Your loan is approved with 4.5% interest rate.\"\n\n\nPRefLexOR\nQ: \"Should we approve this loan?\"\n&lt;|thinking|&gt;\nLet me analyze this mortgage application step by step:\n1. Credit score: 720 - Good, qualifies for prime rates\n2. DTI ratio: 38% - Below 43% threshold, acceptable\n3. Employment: 5 years stable - Strong indicator\n4. Down payment: 20% - Avoids PMI, reduces risk\n5. Property value: $400k in growing market - Good collateral\nBased on risk factors, recommending Tier 2 pricing at 4.5%\n&lt;|/thinking|&gt;\nA: \"Your loan is approved with 4.5% interest rate.\""
-  },
-  {
-    "objectID": "technical-deep-dive.html#introduction-to-preflexor",
-    "href": "technical-deep-dive.html#introduction-to-preflexor",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "",
-    "text": "Preference-based Recursive Language Modeling for Exploratory Optimization of Reasoning\nPRefLexOR represents a fundamental shift in how AI systems make and communicate decisions. Instead of operating as black boxes, PRefLexOR models expose their reasoning process through special “thinking tokens.”\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[User Query] --&gt; B[PRefLexOR Model]\n    B --&gt; C{Thinking Process}\n    C --&gt; D[Step 1: Analyze Input]\n    C --&gt; E[Step 2: Apply Domain Rules]\n    C --&gt; F[Step 3: Evaluate Options]\n    C --&gt; G[Step 4: Risk Assessment]\n    D & E & F & G --&gt; H[Reasoning Output]\n    H --&gt; I[Final Answer]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style C fill:#ffffff,stroke:#28a745,stroke-width:3px,color:#000\n    style H fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style I fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\nStandard LLM\nQ: \"Should we approve this loan?\"\nA: \"Your loan is approved with 4.5% interest rate.\"\n\n\nPRefLexOR\nQ: \"Should we approve this loan?\"\n&lt;|thinking|&gt;\nLet me analyze this mortgage application step by step:\n1. Credit score: 720 - Good, qualifies for prime rates\n2. DTI ratio: 38% - Below 43% threshold, acceptable\n3. Employment: 5 years stable - Strong indicator\n4. Down payment: 20% - Avoids PMI, reduces risk\n5. Property value: $400k in growing market - Good collateral\nBased on risk factors, recommending Tier 2 pricing at 4.5%\n&lt;|/thinking|&gt;\nA: \"Your loan is approved with 4.5% interest rate.\""
-  },
-  {
-    "objectID": "technical-deep-dive.html#the-problem-with-standard-llms",
-    "href": "technical-deep-dive.html#the-problem-with-standard-llms",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "The Problem with Standard LLMs",
-    "text": "The Problem with Standard LLMs\n\nBlack Box Decision Making\nStandard LLMs operate without transparency, creating significant risks:\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\nflowchart LR\n    subgraph \"Standard LLM Process\"\n        A[Input] --&gt; B[Neural Network&lt;br/&gt;100B+ parameters]\n        B --&gt; C[Output]\n    end\n    \n    subgraph \"What's Missing\"\n        D[No Reasoning Visible]\n        E[No Audit Trail]\n        F[No Error Detection]\n        G[No Compliance Doc]\n    end\n    \n    style B fill:#000000,stroke:#000000,stroke-width:2px,color:#fff\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style E fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style F fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style G fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nReal-World Consequences\n\nMedical Diagnosis Example\n# Standard LLM - Dangerous lack of transparency\nprompt = \"Patient has fever, cough, fatigue. What's the diagnosis?\"\nresponse = \"Likely viral infection. Recommend rest and fluids.\"\n# Missing: Differential diagnosis, risk factors, red flags\n\n\nFinancial Services Example\n# Standard LLM - Compliance nightmare\nprompt = \"Should we approve this $500k business loan?\"\nresponse = \"Yes, approve the loan.\"\n# Missing: Risk analysis, credit evaluation, regulatory compliance"
-  },
-  {
-    "objectID": "technical-deep-dive.html#preflexors-core-innovation",
-    "href": "technical-deep-dive.html#preflexors-core-innovation",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "PRefLexOR’s Core Innovation",
-    "text": "PRefLexOR’s Core Innovation\n\nTwo-Phase Training Approach\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n    subgraph Phase1[\"Phase I: ORPO\"]\n        A[Base Model] --&gt; B[Preference Data]\n        B --&gt; C[Learn to Think First]\n        C --&gt; D[Generate Reasoning]\n    end\n    \n    subgraph Phase2[\"Phase II: DPO with EXO\"]\n        D --&gt; E[Quality Refinement]\n        E --&gt; F[Optimize Reasoning]\n        F --&gt; G[Production Model]\n    end\n    \n    style Phase1 fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style Phase2 fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style A fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style C fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style D fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style E fill:#ffffff,stroke:#28a745,stroke-width:2px,color:#000\n    style F fill:#ffffff,stroke:#28a745,stroke-width:2px,color:#000\n    style G fill:#28a745,stroke:#28a745,stroke-width:3px,color:#fff\n\n\n\n\n\n\n\nPhase I: ORPO (Odds Ratio Preference Optimization)\n# Teaching models to think before speaking\npreferred_response = \"\"\"\n&lt;|thinking|&gt;\nThe user asks about loan approval. I need to:\n1. Check credit score against thresholds\n2. Calculate debt-to-income ratio\n3. Verify employment stability\n4. Assess collateral value\n5. Apply regulatory requirements\n&lt;|/thinking|&gt;\nBased on analysis, loan approved with conditions...\n\"\"\"\n\nrejected_response = \"\"\"\nLoan approved.\n\"\"\"\n\n\nPhase II: DPO with EXO (Direct Preference Optimization)\n# Refining reasoning quality\nhigh_quality_reasoning = \"\"\"\n&lt;|thinking|&gt;\nMedical case analysis:\n- Symptom clustering suggests respiratory infection\n- Duration (3 days) indicates acute condition  \n- No red flags for bacterial infection\n- Age/history support viral etiology\n- Risk stratification: Low\n- Differential: COVID-19, Influenza, Common cold\n&lt;|/thinking|&gt;\nRecommend symptomatic treatment with monitoring...\n\"\"\""
-  },
-  {
-    "objectID": "technical-deep-dive.html#technical-architecture-deep-dive",
-    "href": "technical-deep-dive.html#technical-architecture-deep-dive",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "Technical Architecture Deep Dive",
-    "text": "Technical Architecture Deep Dive\n\nSystem Architecture\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n    subgraph \"User Interface Layer\"\n        A[Streamlit Apps]\n        B[API Endpoints]\n    end\n    \n    subgraph \"Business Logic Layer\"\n        C[Domain Rules Engine]\n        D[Reasoning Patterns]\n        E[Export Handlers]\n    end\n    \n    subgraph \"PRefLexOR Engine\"\n        F[Thinking Extractor]\n        G[Response Generator]\n        H[Audit Logger]\n    end\n    \n    subgraph \"Model Layer\"\n        I[Ollama Runtime]\n        J[PRefLexOR Models]\n    end\n    \n    A & B --&gt; C & D & E\n    C & D & E --&gt; F & G & H\n    F & G & H --&gt; I & J\n    \n    style A fill:#e7f3ff,stroke:#007bff,stroke-width:2px,color:#000\n    style F fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style J fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nKey Components\n\n1. Thinking Token Extractor\ndef extract_thinking_section(self, response: str) -&gt; Dict[str, str]:\n    \"\"\"Extract thinking and answer sections from response\"\"\"\n    thinking_start = \"&lt;|thinking|&gt;\"\n    thinking_end = \"&lt;|/thinking|&gt;\"\n    \n    if thinking_start in response and thinking_end in response:\n        start_idx = response.find(thinking_start) + len(thinking_start)\n        end_idx = response.find(thinking_end)\n        \n        thinking = response[start_idx:end_idx].strip()\n        answer = response[end_idx + len(thinking_end):].strip()\n        \n        return {\n            \"thinking\": thinking,\n            \"answer\": answer,\n            \"has_thinking\": True\n        }\n\n\n2. Domain-Specific System Prompts\nFINANCIAL_SYSTEM_PROMPT = \"\"\"You are a senior credit analyst...\nProvide detailed analysis using &lt;|thinking|&gt; tags showing:\n- Risk factor evaluation\n- Regulatory compliance checks  \n- Credit score analysis\n- Debt-to-income calculations\nFocus on CFPB compliance and fair lending practices.\"\"\""
-  },
-  {
-    "objectID": "technical-deep-dive.html#business-use-cases",
-    "href": "technical-deep-dive.html#business-use-cases",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "Six Business Use Cases - Implementation Analysis",
-    "text": "Six Business Use Cases - Implementation Analysis\n\n5.1 Financial Risk Assessment\n\nImplementation Architecture\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph LR\n    A[Loan Application] --&gt; B[PRefLexOR Analysis]\n    B --&gt; C{Risk Assessment}\n    C --&gt; D[Credit Analysis]\n    C --&gt; E[DTI Calculation]\n    C --&gt; F[Compliance Check]\n    C --&gt; G[Collateral Review]\n    D & E & F & G --&gt; H[Decision Matrix]\n    H --&gt; I[Transparent Decision]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style I fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nImplementation Code\n# Comprehensive risk assessment with thinking tokens\ndef analyze_mortgage_application(self, application_data):\n    analysis_prompt = f\"\"\"\n    &lt;|thinking|&gt;\n    Analyzing mortgage application:\n    1. Credit Score: {application_data['credit_score']}\n       - Threshold check: {application_data['credit_score']} &gt; 620 ✓\n       - Risk tier: {'Prime' if application_data['credit_score'] &gt; 740 else 'Near-prime'}\n       \n    2. DTI Calculation:\n       - Monthly debt: ${application_data['monthly_debt']}\n       - Monthly income: ${application_data['monthly_income']}  \n       - DTI: {(application_data['monthly_debt']/application_data['monthly_income'])*100:.1f}%\n       - Regulatory limit: 43% - {'PASS' if dti &lt; 43 else 'FAIL'}\n       \n    3. Compliance Checks:\n       - CFPB affordability: Checking ATR/QM rules\n       - Fair lending: No discriminatory factors\n       - State regulations: Conforming to local laws\n    &lt;|/thinking|&gt;\n    \n    Based on comprehensive analysis, loan decision is...\n    \"\"\"\n\n\nKey Differentiators\n\n\nRegulatory Compliance Trail: Every decision documents compliance\nRisk Factor Transparency: All factors visible for audit\nExplainable Decisions: Can defend in court/audit\nConsistent Methodology: Same analysis process every time\n\n\n\n\nBusiness Value\n\nReduced Compliance Risk: Full audit trail\nFaster Approvals: Automated but transparent\nCustomer Trust: Can explain decisions\nRegulatory Defense: Complete documentation\n\n\n\n\n5.2 Medical Diagnosis Support\n\nClinical Reasoning Architecture\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Patient Presentation] --&gt; B[Clinical Analysis]\n    B --&gt; C[System Review]\n    B --&gt; D[Differential Diagnosis]\n    B --&gt; E[Risk Stratification]\n    B --&gt; F[Red Flag Detection]\n    C & D & E & F --&gt; G[Clinical Decision]\n    G --&gt; H[Transparent Recommendations]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style E fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style H fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nImplementation Deep Dive\ndef perform_diagnosis_analysis(patient_data):\n    prompt = f\"\"\"\n    &lt;|thinking|&gt;\n    Clinical Analysis Process:\n    \n    1. Chief Complaint Analysis:\n       - Primary: {patient_data['symptoms']}\n       - Duration: {patient_data['duration']}\n       - Severity: {patient_data['severity']}/10\n       \n    2. System Review:\n       - Cardiovascular: {patient_data['cv_symptoms']}\n       - Respiratory: {patient_data['resp_symptoms']}\n       - Red flags: {identify_red_flags(patient_data)}\n       \n    3. Differential Diagnosis Construction:\n       - Most likely: {primary_diagnosis}\n       - Also consider: {differential_list}\n       - Can't miss: {critical_diagnoses}\n       \n    4. Risk Stratification:\n       - Immediate risk: {risk_level}\n       - Disposition: {recommended_action}\n    &lt;|/thinking|&gt;\n    \n    Clinical Assessment: {final_assessment}\n    \"\"\"\n\n\nAdvanced Features\n\n\nRed Flag Detection: Automatic identification of serious conditions\nEvidence-Based Reasoning: Links to clinical guidelines\nRisk Stratification: Clear triage recommendations\nLearning Integration: Can reference latest medical knowledge\n\n\n\n\n\n5.3 Supply Chain Risk Management\n\nMulti-Dimensional Risk Framework\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph LR\n    subgraph \"Risk Dimensions\"\n        A[Geopolitical]\n        B[Financial]\n        C[Operational]\n        D[Dependency]\n    end\n    \n    subgraph \"Analysis Engine\"\n        E[PRefLexOR]\n    end\n    \n    subgraph \"Outputs\"\n        F[Risk Score]\n        G[Mitigation Plan]\n        H[Monitoring Alert]\n    end\n    \n    A & B & C & D --&gt; E\n    E --&gt; F & G & H\n    \n    style E fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n\n\n\n\n\n\n\n\nImplementation Code\n# Complex risk scoring with transparent methodology\ndef analyze_supplier_risk(self, supplier):\n    risk_assessment_prompt = f\"\"\"\n    &lt;|thinking|&gt;\n    Supply Chain Risk Analysis for {supplier.name}:\n    \n    1. Geopolitical Risk Assessment:\n       - Location: {supplier.country} \n       - Political stability score: {stability_score}/100\n       - Trade restrictions: {check_sanctions(supplier)}\n       - Risk level: {calculate_geo_risk()}\n    \n    2. Financial Health Analysis:\n       - Credit rating: {supplier.credit_rating}\n       - Payment history: {supplier.payment_performance}\n       - Financial ratios: {analyze_financials(supplier)}\n       - Bankruptcy risk: {altman_z_score(supplier)}\n    \n    3. Operational Risk Evaluation:\n       - Capacity utilization: {supplier.capacity}%\n       - Quality metrics: {supplier.quality_score}\n       - Delivery performance: {supplier.otd_rate}%\n       - Contingency planning: {supplier.backup_suppliers}\n    \n    4. Composite Risk Score:\n       - Weighting: Geo(30%), Fin(25%), Op(25%), Dep(20%)\n       - Calculation: {show_weighted_calculation()}\n       - Final score: {risk_score}/100\n    &lt;|/thinking|&gt;\n    \n    Risk Assessment: {final_assessment}\n    Mitigation Strategies: {recommendations}\n    \"\"\"\n\n\n\n5.4 Legal Document Analysis\n\nContract Analysis Framework\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Contract Input] --&gt; B[Clause Analysis]\n    B --&gt; C[Payment Terms]\n    B --&gt; D[Liability Review]\n    B --&gt; E[IP Assessment]\n    B --&gt; F[Compliance Check]\n    C & D & E & F --&gt; G[Risk Matrix]\n    G --&gt; H[Legal Recommendations]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style D fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style H fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nLegal Analysis Implementation\ndef analyze_contract(self, contract):\n    legal_analysis_prompt = f\"\"\"\n    &lt;|thinking|&gt;\n    Contract Legal Analysis:\n    \n    1. Key Terms Analysis:\n       a) Payment Terms:\n          - Structure: {analyze_payment_structure(contract)}\n          - Risk: Late payment penalties missing\n          - Recommendation: Add interest clause\n       \n       b) Liability Provisions:\n          - Limitation: ${extract_liability_cap(contract)}\n          - Exclusions: {identify_excluded_damages(contract)}\n          - Risk: No indemnification clause\n          - Legal precedent: See Smith v. Jones\n    \n    2. Regulatory Compliance:\n       - GDPR: {check_gdpr_compliance(contract)}\n       - Industry specific: {check_industry_regulations(contract)}\n       - Missing clauses: {identify_compliance_gaps(contract)}\n    \n    3. Risk Matrix:\n       - High risks: {categorize_high_risks(contract)}\n       - Medium risks: {categorize_medium_risks(contract)}\n       - Mitigation priority: {prioritize_actions(contract)}\n    &lt;|/thinking|&gt;\n    \n    Legal Recommendation: {final_legal_opinion}\n    \"\"\"\n\n\n\n5.5 Investment Research\n\nInvestment Analysis Architecture\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\nflowchart TB\n    subgraph \"Data Inputs\"\n        A[Market Data]\n        B[Financials]\n        C[News/Sentiment]\n    end\n    \n    subgraph \"PRefLexOR Analysis\"\n        D[Fundamental Analysis]\n        E[Technical Analysis]\n        F[Risk Assessment]\n    end\n    \n    subgraph \"Outputs\"\n        G[Investment Thesis]\n        H[Price Target]\n        I[Risk Profile]\n    end\n    \n    A & B & C --&gt; D & E & F\n    D & E & F --&gt; G & H & I\n    \n    style D fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style E fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style F fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nImplementation with Market Integration\ndef analyze_investment(self, symbol, market_data):\n    investment_analysis = f\"\"\"\n    &lt;|thinking|&gt;\n    Investment Analysis for {symbol}:\n    \n    1. Fundamental Analysis:\n       - P/E Ratio: {market_data.pe} vs Industry: {market_data.industry_pe}\n       - Revenue Growth: {market_data.revenue_growth}% YoY\n       - Profit Margins: {market_data.margins}%\n       - ROE: {market_data.roe}% vs peers: {market_data.peer_average}%\n       - Valuation: {determine_valuation(market_data)}\n    \n    2. Technical Analysis:\n       - Price vs 50-DMA: {market_data.price_vs_ma50}\n       - RSI: {market_data.rsi} ({interpret_rsi(market_data.rsi)})\n       - Support: ${market_data.support_level}\n       - Resistance: ${market_data.resistance_level}\n    \n    3. Investment Thesis:\n       - Bull case: {construct_bull_case(market_data)}\n       - Bear case: {construct_bear_case(market_data)}\n       - Base case: {expected_scenario(market_data)}\n       - Price target: ${calculate_price_target(market_data)}\n    &lt;|/thinking|&gt;\n    \n    Investment Recommendation: {final_recommendation}\n    \"\"\"\n\n\n\n5.6 Product Development Strategy\n\nStrategic Planning Framework\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph LR\n    subgraph \"Market Analysis\"\n        A[TAM/SAM/SOM]\n        B[Competition]\n        C[User Needs]\n    end\n    \n    subgraph \"Strategic Engine\"\n        D[PRefLexOR Analysis]\n    end\n    \n    subgraph \"Outputs\"\n        E[Go/No-Go Decision]\n        F[Development Roadmap]\n        G[Success Metrics]\n    end\n    \n    A & B & C --&gt; D\n    D --&gt; E & F & G\n    \n    style D fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style E fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000"
-  },
-  {
-    "objectID": "technical-deep-dive.html#comparative-analysis-preflexor-vs-standard-llms",
-    "href": "technical-deep-dive.html#comparative-analysis-preflexor-vs-standard-llms",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "Comparative Analysis: PRefLexOR vs Standard LLMs",
-    "text": "Comparative Analysis: PRefLexOR vs Standard LLMs\n\nSide-by-Side Comparison\n\nExample: Medical Diagnosis\n\n\nStandard LLM\nInput: \"45-year-old with chest pain and shortness of breath\"\nOutput: \"Possible heart condition. Seek immediate medical attention.\"\n\n\nPRefLexOR\nInput: \"45-year-old with chest pain and shortness of breath\"\n&lt;|thinking|&gt;\nAnalyzing presentation:\n- Age: 45 - moderate cardiac risk\n- Symptoms: Chest pain + dyspnea - concerning\n- Differential diagnosis:\n  1. Acute coronary syndrome (must rule out)\n  2. Pulmonary embolism (Wells criteria)\n  3. Pneumonia (check fever, cough)\n  4. Anxiety (diagnosis of exclusion)\n- Risk stratification: HIGH\n- Immediate actions:\n  - ECG within 10 minutes\n  - Troponin levels\n  - Chest X-ray\n&lt;|/thinking|&gt;\nOutput: \"High-risk presentation requiring immediate \nemergency evaluation for life-threatening conditions.\"\n\n\n\n\n\nKey Differentiators\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n    subgraph \"Standard LLM\"\n        A1[Hidden Process]\n        A2[No Audit Trail]\n        A3[Trust Issues]\n        A4[Compliance Risk]\n    end\n    \n    subgraph \"PRefLexOR\"\n        B1[Transparent Process]\n        B2[Complete Audit Trail]\n        B3[High Trust]\n        B4[Compliance Ready]\n    end\n    \n    A1 -.-&gt;|vs| B1\n    A2 -.-&gt;|vs| B2\n    A3 -.-&gt;|vs| B3\n    A4 -.-&gt;|vs| B4\n    \n    style A1 fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style A2 fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style A3 fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style A4 fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style B1 fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style B2 fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style B3 fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style B4 fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000"
-  },
-  {
-    "objectID": "technical-deep-dive.html#key-concepts-and-implementation-patterns",
-    "href": "technical-deep-dive.html#key-concepts-and-implementation-patterns",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "Key Concepts and Implementation Patterns",
-    "text": "Key Concepts and Implementation Patterns\n\nCore Implementation Patterns\n\n1. Structured Reasoning Pattern\ndef structured_reasoning_pattern(input_data):\n    \"\"\"Universal pattern for PRefLexOR reasoning\"\"\"\n    return f\"\"\"\n    &lt;|thinking|&gt;\n    1. Problem Decomposition:\n       {break_down_problem(input_data)}\n    \n    2. Data Analysis:\n       {analyze_each_component(input_data)}\n    \n    3. Apply Domain Rules:\n       {apply_business_logic(input_data)}\n    \n    4. Risk Assessment:\n       {evaluate_risks(input_data)}\n    \n    5. Generate Recommendation:\n       {synthesize_recommendation(input_data)}\n    &lt;|/thinking|&gt;\n    \n    {final_answer}\n    \"\"\"\n\n\n2. Audit Trail Pattern\nclass AuditableDecision:\n    def create_audit_record(self):\n        return {\n            \"id\": str(uuid.uuid4()),\n            \"timestamp\": self.timestamp,\n            \"input\": self.input_data,\n            \"reasoning\": self.thinking_process,\n            \"decision\": self.decision,\n            \"confidence\": self.confidence,\n            \"version\": MODEL_VERSION,\n            \"compliance_checks\": self.compliance_results\n        }"
-  },
-  {
-    "objectID": "technical-deep-dive.html#business-value-and-roi",
-    "href": "technical-deep-dive.html#business-value-and-roi",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "Business Value and ROI",
-    "text": "Business Value and ROI\n\nProjected Benefits Framework*\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph LR\n    A[PRefLexOR Implementation] --&gt; B[Compliance Benefits]\n    A --&gt; C[Operational Benefits]\n    A --&gt; D[Customer Benefits]\n    \n    B --&gt; E[80% ↓ Violations*]\n    B --&gt; F[95% Audit Success*]\n    \n    C --&gt; G[70% Faster Decisions*]\n    C --&gt; H[65% ↓ Errors*]\n    \n    D --&gt; I[40% ↑ Trust*]\n    D --&gt; J[60% ↑ Satisfaction*]\n    \n    style A fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style E fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style F fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style G fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style H fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style I fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style J fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\nImportant: All metrics shown are framework-based projections designed to illustrate the methodology for calculating potential benefits. Actual results will vary significantly based on organizational maturity, implementation scope, baseline performance, and specific use case requirements.\n\n\n\nROI Calculation Framework Example*\n\nFinancial Services Implementation Framework\nSample Investment Structure:\n- Implementation: $500,000\n- Training: $100,000\n- Maintenance: $200,000/year\n\nProjected Returns (Year 1):\n- Compliance cost reduction: $800,000*\n- Efficiency gains: $600,000*\n- Error reduction: $400,000*\n- Customer retention: $300,000*\n\nROI Calculation Framework:\nROI = (Returns - Investment) / Investment\nExample: ($2.1M - $0.8M) / $0.8M = 162%*\nFramework Note: This example demonstrates the ROI calculation methodology. Organizations should customize inputs based on their specific baseline costs, efficiency metrics, and implementation scope to generate accurate projections for business case development.\n\n\nMethodology Disclaimer: All quantified benefits presented (percentages, ROI calculations, cost savings) are framework-based projections intended to demonstrate the systematic approach for measuring PRefLexOR value. These projections are derived from theoretical models and should be validated through pilot implementations. Actual results will depend on organizational factors including current AI maturity, baseline performance metrics, implementation quality, and specific use case requirements. Organizations should conduct customized assessments using this framework to develop accurate business cases."
-  },
-  {
-    "objectID": "technical-deep-dive.html#future-directions",
-    "href": "technical-deep-dive.html#future-directions",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "Future Directions",
-    "text": "Future Directions\n\nTechnical Roadmap\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n    subgraph \"2024 Q1: Core Implementation\"\n        A[Six Business Applications]\n        B[Ollama Integration]\n        C[Basic Reasoning]\n    end\n    \n    subgraph \"2024 Q2: Enhanced Reasoning\"\n        D[Multi-step Analysis]\n        E[Cross-domain Synthesis]\n        F[Advanced Patterns]\n    end\n    \n    subgraph \"2024 Q3: Enterprise Features\"\n        G[ERP Integration]\n        H[Real-time Systems]\n        I[Collaborative AI]\n    end\n    \n    subgraph \"2024 Q4: Advanced Capabilities\"\n        J[Reasoning Visualization]\n        K[Federated Learning]\n        L[Interactive Refinement]\n    end\n    \n    A & B & C --&gt; D & E & F\n    D & E & F --&gt; G & H & I\n    G & H & I --&gt; J & K & L"
-  },
-  {
-    "objectID": "technical-deep-dive.html#conclusion",
-    "href": "technical-deep-dive.html#conclusion",
-    "title": "PRefLexOR: Technical Deep Dive",
-    "section": "Conclusion",
-    "text": "Conclusion\nPRefLexOR fundamentally changes how we interact with AI systems by making the reasoning process transparent, auditable, and trustworthy. The six business applications demonstrate that transparent AI is not just possible but essential for critical business decisions.\n\nKey Takeaways\n\nTransparency is not optional in critical applications\nReasoning visibility enables trust and compliance\nImplementation patterns are reusable across domains\nBusiness value is quantifiable and significant\nFuture potential extends to all AI decision-making\n\n\n\nTransform your AI from black box to glass box with PRefLexOR."
-  },
-  {
     "objectID": "index.html#what-is-preflexor",
     "href": "index.html#what-is-preflexor",
     "title": "PRefLexOR: Transparent AI Reasoning for Enterprise Applications",
@@ -196,167 +70,6 @@
     "text": "Get Started\n\nReady to transform your AI from black box to glass box?\n\nReview the Executive Summary for business impact\nExplore the Technical Deep Dive for implementation details\nStudy the Visual Guide for code examples\nContact us for a personalized demo\n\n\n\nPRefLexOR: Making every AI decision defendable, auditable, and trustworthy.\n\nNote: All performance metrics, ROI projections, and benefit calculations referenced in this presentation are framework-based estimates designed to demonstrate value assessment methodology. Actual results will vary by organization and implementation approach."
   },
   {
-    "objectID": "mermaid-styles.html",
-    "href": "mermaid-styles.html",
-    "title": "",
-    "section": "",
-    "text": "Code"
-  },
-  {
-    "objectID": "mermaid-styles.html#standard-theme-configuration",
-    "href": "mermaid-styles.html#standard-theme-configuration",
-    "title": "",
-    "section": "Standard Theme Configuration",
-    "text": "Standard Theme Configuration\nUse this init block for all Mermaid diagrams to ensure consistent, readable styling:\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57', 'secondaryColor':'#e7f3ff', 'tertiaryColor':'#f8f9fa'}}}%%"
-  },
-  {
-    "objectID": "mermaid-styles.html#color-palette",
-    "href": "mermaid-styles.html#color-palette",
-    "title": "",
-    "section": "Color Palette",
-    "text": "Color Palette\n\nBackground Colors (Light with good contrast)\n\nPrimary Light: #e7f3ff (light blue)\nSuccess Light: #e8f5e8 (light green)\n\nWarning Light: #fff3cd (light yellow)\nDanger Light: #ffebee (light red)\nInfo Light: #e7f3ff (light blue)\nWhite: #ffffff (white)\n\n\n\nAccent Colors (For emphasis)\n\nPrimary: #2e8b57 (dark green)\nSuccess: #28a745 (green)\nWarning: #ffc107 (yellow)\nDanger: #dc3545 (red)\nInfo: #007bff (blue)\n\n\n\nBorder Colors\n\nPrimary Border: #2e8b57\nSuccess Border: #28a745\nWarning Border: #ffc107\nDanger Border: #dc3545"
-  },
-  {
-    "objectID": "mermaid-styles.html#standard-style-patterns",
-    "href": "mermaid-styles.html#standard-style-patterns",
-    "title": "",
-    "section": "Standard Style Patterns",
-    "text": "Standard Style Patterns\n\nFor Important Central Nodes\nstyle NodeName fill:#2e8b57,stroke:#1f5f3f,stroke-width:3px,color:#fff\n\n\nFor Regular Nodes (Light Background)\nstyle NodeName fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n\n\nFor Success/Positive Nodes\nstyle NodeName fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\nFor Warning/Caution Nodes\nstyle NodeName fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n\n\nFor Error/Negative Nodes\nstyle NodeName fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n\n\nFor Emphasis/Action Nodes (Dark Background)\nstyle NodeName fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff"
-  },
-  {
-    "objectID": "mermaid-styles.html#example-usage",
-    "href": "mermaid-styles.html#example-usage",
-    "title": "",
-    "section": "Example Usage",
-    "text": "Example Usage\n\nBasic Flowchart\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\nflowchart LR\n    A[Input] --&gt; B[Process]\n    B --&gt; C[Output]\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\nDecision Tree\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Start] --&gt; B{Decision}\n    B --&gt;|Yes| C[Action A]\n    B --&gt;|No| D[Action B]\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000"
-  },
-  {
-    "objectID": "mermaid-styles.html#text-contrast-rules",
-    "href": "mermaid-styles.html#text-contrast-rules",
-    "title": "",
-    "section": "Text Contrast Rules",
-    "text": "Text Contrast Rules\n\nLight backgrounds: Always use color:#000 (black text)\nDark backgrounds: Always use color:#fff (white text)\nMinimum contrast ratio: 4.5:1 for accessibility"
-  },
-  {
-    "objectID": "mermaid-styles.html#common-issues-and-fixes",
-    "href": "mermaid-styles.html#common-issues-and-fixes",
-    "title": "",
-    "section": "Common Issues and Fixes",
-    "text": "Common Issues and Fixes\n\nIssue: Black boxes or invisible text\nFix: Use light background colors with dark text:\nstyle Node fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n\n\nIssue: Poor contrast\nFix: Test combinations at https://webaim.org/resources/contrastchecker/\n\n\nIssue: Mindmaps not rendering\nFix: Use regular graph instead:\ngraph TD\n    Root[Main Topic]\n    Root --&gt; A[Subtopic 1]\n    Root --&gt; B[Subtopic 2]"
-  },
-  {
-    "objectID": "mermaid-styles.html#accessibility-guidelines",
-    "href": "mermaid-styles.html#accessibility-guidelines",
-    "title": "",
-    "section": "Accessibility Guidelines",
-    "text": "Accessibility Guidelines\n\nColor alone should not convey meaning\nUse patterns or text in addition to color\nEnsure 4.5:1 contrast ratio minimum\nTest with colorblind simulators"
-  },
-  {
-    "objectID": "mermaid-styles.html#template-for-new-diagrams",
-    "href": "mermaid-styles.html#template-for-new-diagrams",
-    "title": "",
-    "section": "Template for New Diagrams",
-    "text": "Template for New Diagrams\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Your Node] --&gt; B[Another Node]\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\nCopy this template and modify as needed for consistent, readable diagrams."
-  },
-  {
-    "objectID": "TROUBLESHOOTING.html",
-    "href": "TROUBLESHOOTING.html",
-    "title": "",
-    "section": "",
-    "text": "Code"
-  },
-  {
-    "objectID": "TROUBLESHOOTING.html#mermaid-diagrams-not-rendering",
-    "href": "TROUBLESHOOTING.html#mermaid-diagrams-not-rendering",
-    "title": "",
-    "section": "Mermaid Diagrams Not Rendering",
-    "text": "Mermaid Diagrams Not Rendering\n\nIssue\nMermaid diagrams show in VS Code preview but don’t render on the website.\n\n\nSolutions\n\nOption 1: Use Simple Configuration\nReplace _quarto.yml with _quarto-simple.yml:\nmv _quarto.yml _quarto-backup.yml\nmv _quarto-simple.yml _quarto.yml\n\n\nOption 2: Test Mermaid Separately\n\nBuild the test page:\nquarto render test-mermaid.qmd\nOpen _site/test-mermaid.html in browser\nIf diagrams show here, the issue is configuration-specific\n\n\n\nOption 3: Check Quarto Version\nquarto --version\nEnsure you have Quarto 1.4+ for best Mermaid support.\n\n\nOption 4: Manual Mermaid Installation\nIf Quarto’s built-in Mermaid isn’t working:\n# Install mermaid-cli globally\nnpm install -g @mermaid-js/mermaid-cli\n\n# Convert diagrams to images\nmmdc -i diagram.mmd -o diagram.png\n\n\nOption 5: Use Alternative Diagram Formats\nReplace Mermaid with SVG or PNG diagrams:\n![Architecture Diagram](images/architecture.svg)\n\n\n\nDebug Steps\n\nCheck Browser Console\n\nOpen Developer Tools (F12)\nLook for JavaScript errors\nCheck if Mermaid library loads\n\nValidate Mermaid Syntax\n\nTest diagrams at https://mermaid.live/\nEnsure no syntax errors\n\nCheck Network Tab\n\nVerify Mermaid CDN loads\nCheck for 404 errors\n\nTry Different Browsers\n\nTest in Chrome, Firefox, Safari\nCheck if it’s browser-specific\n\n\n\n\nCommon Fixes\n\nFix 1: Remove Custom Mermaid Configuration\nformat:\n  html:\n    # Remove custom mermaid configuration\n    # Use only:\n    mermaid:\n      theme: default\n\n\nFix 2: Use PNG Format\nformat:\n  html:\n    mermaid-format: png\n\n\nFix 3: Disable JavaScript Optimizations\nformat:\n  html:\n    minimal: false"
-  },
-  {
-    "objectID": "TROUBLESHOOTING.html#other-common-issues",
-    "href": "TROUBLESHOOTING.html#other-common-issues",
-    "title": "",
-    "section": "Other Common Issues",
-    "text": "Other Common Issues\n\nBuild Errors\n\nMissing Dependencies\n# Reinstall Quarto\nbrew reinstall quarto\n\n# Clear cache\nrm -rf .quarto _site\n\n\nSyntax Errors\n# Check specific file\nquarto check file.qmd\n\n# Validate all files\nquarto check\n\n\n\nStyling Issues\n\nCSS Not Loading\n\nCheck styles.css path in _quarto.yml\nClear browser cache\nHard refresh (Ctrl+F5 or Cmd+Shift+R)\n\n\n\nResponsive Issues\n\nTest in mobile view\nCheck CSS media queries\nValidate HTML structure\n\n\n\n\nPerformance Issues\n\nSlow Rendering\nexecute:\n  freeze: true  # Cache execution results\n\n\nLarge File Sizes\n\nOptimize images\nUse PNG for Mermaid instead of SVG\nEnable compression"
-  },
-  {
-    "objectID": "TROUBLESHOOTING.html#quick-fixes-script",
-    "href": "TROUBLESHOOTING.html#quick-fixes-script",
-    "title": "",
-    "section": "Quick Fixes Script",
-    "text": "Quick Fixes Script\nCreate fix-site.sh:\n#!/bin/bash\necho \"Fixing common issues...\"\n\n# Clear build artifacts\nrm -rf _site .quarto\n\n# Use simple configuration\nif [ -f \"_quarto-simple.yml\" ]; then\n    cp _quarto-simple.yml _quarto.yml\n    echo \"Using simple configuration\"\nfi\n\n# Rebuild\nquarto render\n\necho \"Site rebuilt with fixes\""
-  },
-  {
-    "objectID": "TROUBLESHOOTING.html#getting-help",
-    "href": "TROUBLESHOOTING.html#getting-help",
-    "title": "",
-    "section": "Getting Help",
-    "text": "Getting Help\n\nCheck Quarto Documentation: https://quarto.org/docs/authoring/diagrams.html\nMermaid Documentation: https://mermaid.js.org/\nTest Individual Components: Use test-mermaid.qmd\nCommunity Support: Quarto GitHub Discussions"
-  },
-  {
-    "objectID": "TROUBLESHOOTING.html#version-information",
-    "href": "TROUBLESHOOTING.html#version-information",
-    "title": "",
-    "section": "Version Information",
-    "text": "Version Information\nWorks best with: - Quarto 1.4.550+ - Modern browsers (Chrome 90+, Firefox 88+, Safari 14+) - Node.js 16+ (if using mermaid-cli)"
-  },
-  {
-    "objectID": "TROUBLESHOOTING.html#final-resort-static-images",
-    "href": "TROUBLESHOOTING.html#final-resort-static-images",
-    "title": "",
-    "section": "Final Resort: Static Images",
-    "text": "Final Resort: Static Images\nIf Mermaid continues to fail, convert to static images:\n# Install mermaid-cli\nnpm install -g @mermaid-js/mermaid-cli\n\n# Convert diagrams\nmmdc -i flowchart.mmd -o flowchart.png -w 1024 -H 768\n\n# Use in markdown\n![Flowchart](flowchart.png)"
-  },
-  {
-    "objectID": "CONTRAST_FIXES.html",
-    "href": "CONTRAST_FIXES.html",
-    "title": "",
-    "section": "",
-    "text": "Code"
-  },
-  {
-    "objectID": "CONTRAST_FIXES.html#css-styling-issues-resolved",
-    "href": "CONTRAST_FIXES.html#css-styling-issues-resolved",
-    "title": "",
-    "section": "🎨 CSS Styling Issues Resolved",
-    "text": "🎨 CSS Styling Issues Resolved\n\n✅ 1. Highlight Box (.highlight-box)\nProblem: Dark gradient background with potentially low contrast text\nSolution: Changed to high-contrast light theme\n/* BEFORE: Dark gradient with white text */\nbackground: linear-gradient(135deg, #2e8b57 0%, #1f5f3f 100%);\ncolor: white;\n\n/* AFTER: Light background with dark text */\nbackground: #e7f3ff;\ncolor: #000000 !important;\nborder: 3px solid #2e8b57;\nResult: - Light blue background (#e7f3ff) - Black text (#000000) for maximum contrast - Dark green border (#2e8b57) for definition - Headers in dark green for hierarchy\n\n\n✅ 2. Feature Boxes (.feature-box)\nEnhanced for better readability\n.feature-box h4 {\n    color: #1f5f3f;  /* Darker green for better contrast */\n    font-weight: 600;\n}\n\n.feature-box p, .feature-box li {\n    color: #000000;  /* Explicit black text */\n}\n\n\n✅ 3. Metric Cards (.metric-card)\nProblem: Light background made borders/text less visible\nSolution: Enhanced contrast design\n/* BEFORE: Light blue background */\nbackground-color: #e7f3ff;\nborder: 1px solid #b3d9ff;\n\n/* AFTER: White background with strong border */\nbackground-color: #ffffff;\nborder: 2px solid #2e8b57;\nbox-shadow: 0 2px 4px rgba(46, 139, 87, 0.1);\nResult: - White background for maximum contrast - Strong green border for definition - Black text for labels - Dark green for values\n\n\n✅ 4. Mermaid Diagrams\nProblem: Black boxes with invisible text\nSolution: Applied consistent light theme (see MERMAID_FIXES.md) - All diagrams use white/light backgrounds - Dark text on light backgrounds - Strong colored borders for definition"
-  },
-  {
-    "objectID": "CONTRAST_FIXES.html#contrast-ratios-achieved",
-    "href": "CONTRAST_FIXES.html#contrast-ratios-achieved",
-    "title": "",
-    "section": "🔍 Contrast Ratios Achieved",
-    "text": "🔍 Contrast Ratios Achieved\nAll elements now meet WCAG AA standards (4.5:1 minimum):\n\n\n\nElement\nBackground\nText\nContrast Ratio\nStatus\n\n\n\n\nHighlight Box\n#e7f3ff\n#000000\n17.9:1\n✅ Excellent\n\n\nFeature Box\n#f0f8f4\n#000000\n16.8:1\n✅ Excellent\n\n\nMetric Cards\n#ffffff\n#000000\n21:1\n✅ Perfect\n\n\nMermaid Nodes\n#ffffff\n#000000\n21:1\n✅ Perfect\n\n\nHeaders\nVarious\n#1f5f3f\n9.2:1\n✅ Excellent"
-  },
-  {
-    "objectID": "CONTRAST_FIXES.html#design-principles-applied",
-    "href": "CONTRAST_FIXES.html#design-principles-applied",
-    "title": "",
-    "section": "🎯 Design Principles Applied",
-    "text": "🎯 Design Principles Applied\n\n1. Maximum Contrast\n\nWhite backgrounds (#ffffff) wherever possible\nBlack text (#000000) for primary content\nDark colors only for emphasis/headers\n\n\n\n2. Clear Hierarchy\n\nPrimary: Black text on white background\nSecondary: Dark green (#1f5f3f) for headers\nAccent: Medium green (#2e8b57) for borders/highlights\n\n\n\n3. Accessibility First\n\nAll text meets WCAG AA standards\nNo reliance on color alone for meaning\nStrong borders provide definition\nConsistent spacing and sizing"
-  },
-  {
-    "objectID": "CONTRAST_FIXES.html#test-the-results",
-    "href": "CONTRAST_FIXES.html#test-the-results",
-    "title": "",
-    "section": "🚀 Test the Results",
-    "text": "🚀 Test the Results\ncd presentation-site\nquarto preview\n# Navigate to any page - all text should be crisp and readable"
-  },
-  {
-    "objectID": "CONTRAST_FIXES.html#before-vs-after",
-    "href": "CONTRAST_FIXES.html#before-vs-after",
-    "title": "",
-    "section": "📊 Before vs After",
-    "text": "📊 Before vs After\n\nBefore:\n\n❌ Dark gradients with white text\n❌ Light colors with poor definition\n❌ Mermaid diagrams with black boxes\n❌ Low contrast ratios (2-3:1)\n\n\n\nAfter:\n\n✅ Light backgrounds with dark text\n✅ Strong borders for definition\n✅ All diagrams readable\n✅ High contrast ratios (15-21:1)"
-  },
-  {
-    "objectID": "CONTRAST_FIXES.html#alternative-options",
-    "href": "CONTRAST_FIXES.html#alternative-options",
-    "title": "",
-    "section": "💡 Alternative Options",
-    "text": "💡 Alternative Options\nIf you prefer the dark theme aesthetic, the CSS includes a commented-out dark version:\n/* Uncomment this section in styles.css for dark theme */\n.highlight-box {\n    background: linear-gradient(135deg, #2e8b57 0%, #1f5f3f 100%);\n    color: #ffffff !important;\n    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);\n}\nBut the light theme provides significantly better accessibility and readability.\n\nAll contrast issues are now resolved! 🎉"
-  },
-  {
     "objectID": "visual-guide.html",
     "href": "visual-guide.html",
     "title": "PRefLexOR Visual Implementation Guide",
@@ -375,21 +88,21 @@
     "href": "visual-guide.html#implementation-example-1-financial-risk-assessment",
     "title": "PRefLexOR Visual Implementation Guide",
     "section": "Implementation Example 1: Financial Risk Assessment",
-    "text": "Implementation Example 1: Financial Risk Assessment\n\nStandard LLM vs PRefLexOR Implementation\n\n\n❌ Traditional Approach - No Visibility\ndef assess_loan_standard(application):\n    prompt = f\"Should we approve this loan? {application}\"\n    response = llm.generate(prompt)\n    return response  # \"Yes\" or \"No\" - but why?\n\n\n✅ PRefLexOR Approach - Full Transparency\ndef assess_loan_preflexor(application):\n    prompt = f\"\"\"\n    Analyze this loan application with transparent reasoning.\n    \n    Application Details:\n    {application}\n    \n    Use &lt;|thinking|&gt; tags to show your analysis process.\n    \"\"\"\n    \n    response = llm.generate(prompt, system_prompt=FINANCIAL_ANALYST_PROMPT)\n    \n    # Response includes thinking process:\n    \"\"\"\n    &lt;|thinking|&gt;\n    1. Credit Analysis:\n       - Score: 750 (Excellent - Tier 1 pricing eligible)\n       - History: No late payments in 7 years\n       - Credit utilization: 22% (Healthy)\n    \n    2. Income Verification:\n       - Stated income: $120,000\n       - Verified through: W-2, bank statements\n       - Stability: Same employer 5 years\n    \n    3. DTI Calculation:\n       - Monthly income: $10,000\n       - Current debts: $2,000\n       - New mortgage: $1,500\n       - Total DTI: 35% (Below 43% limit ✓)\n    \n    4. Risk Rating: LOW\n       - All metrics within guidelines\n       - Strong compensating factors\n    &lt;|/thinking|&gt;\n    \n    APPROVED: Prime rate mortgage at 4.5% APR\n    \"\"\"\n    \n    return extract_thinking_and_decision(response)\n\n\n\n\nFinancial Risk Assessment Dashboard\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n    subgraph \"Risk Assessment Matrix\"\n        A[Credit Score: 750] --&gt; E[LOW RISK]\n        B[DTI Ratio: 35%] --&gt; E\n        C[Employment: 5 years] --&gt; E\n        D[Down Payment: 20%] --&gt; E\n    end\n    \n    subgraph \"Decision Output\"\n        E --&gt; F[Approved]\n        E --&gt; G[Rate: 4.5%]\n        E --&gt; H[Full Documentation]\n    end\n    \n    style A fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style B fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style E fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style F fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000"
+    "text": "Implementation Example 1: Financial Risk Assessment\n\nStandard LLM vs PRefLexOR Implementation\n\n\n❌ Traditional Approach - No Visibility\ndef assess_loan_standard(application):\n    prompt = f\"Should we approve this loan? {application}\"\n    response = llm.generate(prompt)\n    return response  # \"Yes\" or \"No\" - but why?\n\n\n✅ PRefLexOR Approach - Full Transparency\ndef assess_loan_preflexor(application):\n    prompt = f\"\"\"\n    Analyze this loan application with transparent reasoning.\n    \n    Application Details:\n    {application}\n    \n    Use &lt;|thinking|&gt; tags to show your analysis process.\n    \"\"\"\n    \n    response = llm.generate(prompt, system_prompt=FINANCIAL_ANALYST_PROMPT)\n    \n    # Response includes thinking process:\n    \"\"\"\n    &lt;|thinking|&gt;\n    1. Credit Analysis:\n       - Score: 750 (Excellent - Tier 1 pricing eligible)\n       - History: No late payments in 7 years\n       - Credit utilization: 22% (Healthy)\n    \n    2. Income Verification:\n       - Stated income: $120,000\n       - Verified through: W-2, bank statements\n       - Stability: Same employer 5 years\n    \n    3. DTI Calculation:\n       - Monthly income: $10,000\n       - Current debts: $2,000\n       - New mortgage: $1,500\n       - Total DTI: 35% (Below 43% limit ✓)\n    \n    4. Risk Rating: LOW\n       - All metrics within guidelines\n       - Strong compensating factors\n    &lt;|/thinking|&gt;\n    \n    APPROVED: Prime rate mortgage at 4.5% APR\n    \"\"\"\n    \n    return extract_thinking_and_decision(response)\n\n\n\n\nFinancial Risk Assessment Dashboard\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n  subgraph RiskMatrix[\"Risk Assessment Matrix\"]\n    A[Credit Score: 750] --&gt; E[LOW RISK]\n    B[DTI Ratio: 35%] --&gt; E\n    C[Employment: 5 years] --&gt; E\n    D[Down Payment: 20%] --&gt; E\n  end\n\n  subgraph DecisionOutput[\"Decision Output\"]\n    E --&gt; F[Approved]\n    E --&gt; G[Rate: 4.5%]\n    E --&gt; H[Full Documentation]\n  end\n\n  style A fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n  style B fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n  style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n  style D fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n  style E fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n  style F fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000"
   },
   {
     "objectID": "visual-guide.html#implementation-example-2-medical-diagnosis-support",
     "href": "visual-guide.html#implementation-example-2-medical-diagnosis-support",
     "title": "PRefLexOR Visual Implementation Guide",
     "section": "Implementation Example 2: Medical Diagnosis Support",
-    "text": "Implementation Example 2: Medical Diagnosis Support\n\nCode Architecture Comparison\n\n\n❌ Dangerous in Healthcare - No Clinical Reasoning\nclass StandardMedicalAI:\n    def diagnose(self, symptoms):\n        diagnosis = self.model.predict(symptoms)\n        return {\n            \"diagnosis\": diagnosis,\n            \"treatment\": self.get_treatment(diagnosis)\n        }\n        # Missing: differential, risks, red flags!\n\n\n✅ Safe Healthcare AI - Full Clinical Reasoning\nclass PRefLexORMedicalAI:\n    def diagnose(self, patient_data):\n        prompt = self.build_clinical_prompt(patient_data)\n        response = self.model.generate_with_reasoning(prompt)\n        \n        return {\n            \"clinical_reasoning\": response.thinking,\n            \"differential_diagnosis\": response.differential,\n            \"risk_assessment\": response.risk_level,\n            \"recommended_action\": response.action,\n            \"evidence_base\": response.references\n        }\n    \n    def build_clinical_prompt(self, data):\n        return f\"\"\"\n        &lt;|thinking|&gt;\n        Patient Presentation:\n        - Chief complaint: {data.symptoms}\n        - Vital signs: {data.vitals}\n        - History: {data.history}\n        \n        Clinical Reasoning Process:\n        1. Problem representation\n        2. Generate differential diagnosis\n        3. Assess likelihood of each\n        4. Identify red flags\n        5. Risk stratification\n        &lt;|/thinking|&gt;\n        \"\"\"\n\n\n\n\nClinical Decision Tree with Reasoning\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Patient: Chest pain, 45yo male] --&gt; B{Clinical Analysis}\n    \n    B --&gt; C[&lt;|thinking|&gt; Risk Assessment]\n    C --&gt; D[Cardiac: 30%]\n    C --&gt; E[Pulmonary: 15%]\n    C --&gt; F[GI: 20%]\n    C --&gt; G[MSK: 20%]\n    C --&gt; H[Anxiety: 15%]\n    \n    D --&gt; I[HIGH RISK]\n    I --&gt; J[Emergency Evaluation]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style C fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style I fill:#ffebee,stroke:#dc3545,stroke-width:3px,color:#000"
+    "text": "Implementation Example 2: Medical Diagnosis Support\n\nCode Architecture Comparison\n\n\n❌ Dangerous in Healthcare - No Clinical Reasoning\nclass StandardMedicalAI:\n    def diagnose(self, symptoms):\n        diagnosis = self.model.predict(symptoms)\n        return {\n            \"diagnosis\": diagnosis,\n            \"treatment\": self.get_treatment(diagnosis)\n        }\n        # Missing: differential, risks, red flags!\n\n\n✅ Safe Healthcare AI - Full Clinical Reasoning\nclass PRefLexORMedicalAI:\n    def diagnose(self, patient_data):\n        prompt = self.build_clinical_prompt(patient_data)\n        response = self.model.generate_with_reasoning(prompt)\n        \n        return {\n            \"clinical_reasoning\": response.thinking,\n            \"differential_diagnosis\": response.differential,\n            \"risk_assessment\": response.risk_level,\n            \"recommended_action\": response.action,\n            \"evidence_base\": response.references\n        }\n    \n    def build_clinical_prompt(self, data):\n        return f\"\"\"\n        &lt;|thinking|&gt;\n        Patient Presentation:\n        - Chief complaint: {data.symptoms}\n        - Vital signs: {data.vitals}\n        - History: {data.history}\n        \n        Clinical Reasoning Process:\n        1. Problem representation\n        2. Generate differential diagnosis\n        3. Assess likelihood of each\n        4. Identify red flags\n        5. Risk stratification\n        &lt;|/thinking|&gt;\n        \"\"\"\n\n\n\n\nClinical Decision Tree with Reasoning\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Patient: Chest pain, 45yo male] --&gt; B{Clinical Analysis}\n    \n    B --&gt; C[Risk Assessment Thinking]\n    C --&gt; D[Cardiac: 30%]\n    C --&gt; E[Pulmonary: 15%]\n    C --&gt; F[GI: 20%]\n    C --&gt; G[MSK: 20%]\n    C --&gt; H[Anxiety: 15%]\n    \n    D --&gt; I[HIGH RISK]\n    I --&gt; J[Emergency Evaluation]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style C fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style I fill:#ffebee,stroke:#dc3545,stroke-width:3px,color:#000"
   },
   {
     "objectID": "visual-guide.html#implementation-example-3-supply-chain-risk",
     "href": "visual-guide.html#implementation-example-3-supply-chain-risk",
     "title": "PRefLexOR Visual Implementation Guide",
     "section": "Implementation Example 3: Supply Chain Risk",
-    "text": "Implementation Example 3: Supply Chain Risk\n\nVisual Risk Matrix Implementation\n\n\n❌ Opaque Risk Scoring\nrisk_score = model.evaluate_supplier(supplier_data)\nprint(f\"Risk: {risk_score}\")  \n# Output: \"Risk: 7.2\" - What does this mean?\n\n\n✅ Explainable Risk Assessment\nclass SupplyChainRiskAnalyzer:\n    def analyze_supplier(self, supplier):\n        analysis = self.model.reason_through_analysis(f\"\"\"\n        &lt;|thinking|&gt;\n        Supplier: {supplier.name}\n        \n        1. Geopolitical Risk:\n           - Location: {supplier.country}\n           - Stability: {stability_index}/10\n           - Score: {geo_score}/10\n        \n        2. Financial Risk:\n           - Credit: {supplier.credit_rating}\n           - Cash flow: {supplier.cash_trend}\n           - Score: {fin_score}/10\n        \n        3. Operational Risk:\n           - On-time: {supplier.otd}%\n           - Quality: {supplier.quality}%\n           - Score: {ops_score}/10\n        \n        Weighted Score: {total}/10\n        Risk Level: {risk_level}\n        &lt;|/thinking|&gt;\n        \"\"\")\n        \n        return self.create_risk_dashboard(analysis)\n\n\n\n\nRisk Dashboard Visualization\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph LR\n    subgraph \"Risk Factors\"\n        A[Geopolitical: 8/10]\n        B[Financial: 4/10]\n        C[Operational: 6/10]\n        D[Dependency: 8/10]\n    end\n    \n    subgraph \"Analysis\"\n        E[Weighted Score: 6.2/10]\n        F[Risk Level: MEDIUM]\n    end\n    \n    subgraph \"Actions\"\n        G[Find Alternatives]\n        H[Increase Buffer]\n        I[Monitor Closely]\n    end\n    \n    A & B & C & D --&gt; E\n    E --&gt; F\n    F --&gt; G & H & I\n    \n    style A fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style B fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style C fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style F fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000"
+    "text": "Implementation Example 3: Supply Chain Risk\n\nVisual Risk Matrix Implementation\n\n\n❌ Opaque Risk Scoring\nrisk_score = model.evaluate_supplier(supplier_data)\nprint(f\"Risk: {risk_score}\")  \n# Output: \"Risk: 7.2\" - What does this mean?\n\n\n✅ Explainable Risk Assessment\nclass SupplyChainRiskAnalyzer:\n    def analyze_supplier(self, supplier):\n        analysis = self.model.reason_through_analysis(f\"\"\"\n        &lt;|thinking|&gt;\n        Supplier: {supplier.name}\n        \n        1. Geopolitical Risk:\n           - Location: {supplier.country}\n           - Stability: {stability_index}/10\n           - Score: {geo_score}/10\n        \n        2. Financial Risk:\n           - Credit: {supplier.credit_rating}\n           - Cash flow: {supplier.cash_trend}\n           - Score: {fin_score}/10\n        \n        3. Operational Risk:\n           - On-time: {supplier.otd}%\n           - Quality: {supplier.quality}%\n           - Score: {ops_score}/10\n        \n        Weighted Score: {total}/10\n        Risk Level: {risk_level}\n        &lt;|/thinking|&gt;\n        \"\"\")\n        \n        return self.create_risk_dashboard(analysis)\n\n\n\n\nRisk Dashboard Visualization\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': {\n  'primaryColor':'#ffffff',\n  'primaryTextColor':'#000000',\n  'primaryBorderColor':'#2e8b57',\n  'lineColor':'#2e8b57'\n}}}%%\ngraph LR\n  subgraph RiskFactors[\"Risk Factors\"]\n    A[Geopolitical: 8/10]\n    B[Financial: 4/10]\n    C[Operational: 6/10]\n    D[Dependency: 8/10]\n  end\n\n  subgraph Analysis[\"Analysis\"]\n    E[Weighted Score: 6.2/10]\n    F[Risk Level: MEDIUM]\n  end\n\n  subgraph Actions[\"Actions\"]\n    G[Find Alternatives]\n    H[Increase Buffer]\n    I[Monitor Closely]\n  end\n\n  A --&gt; E\n  B --&gt; E\n  C --&gt; E\n  D --&gt; E\n  E --&gt; F\n  F --&gt; G\n  F --&gt; H\n  F --&gt; I\n\n  style A fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n  style B fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n  style C fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n  style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n  style E fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n  style F fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n  style G fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n  style H fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n  style I fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph LR\n    subgraph RiskFactors[\"Risk Factors\"]\n        A[Geopolitical: 8/10]\n        B[Financial: 4/10]\n        C[Operational: 6/10]\n        D[Dependency: 8/10]\n    end\n    \n    subgraph Analysis[\"Analysis\"]\n        E[Weighted Score: 6.2/10]\n        F[Risk Level: MEDIUM]\n    end\n    \n    subgraph Actions[\"Actions\"]\n        G[Find Alternatives]\n        H[Increase Buffer]\n        I[Monitor Closely]\n    end\n    \n    A & B & C & D --&gt; E\n    E --&gt; F\n    F --&gt; G & H & I\n    \n    style A fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style B fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style C fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style F fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000"
   },
   {
     "objectID": "visual-guide.html#implementation-example-4-legal-document-analysis",
@@ -417,7 +130,7 @@
     "href": "visual-guide.html#key-implementation-patterns-across-all-use-cases",
     "title": "PRefLexOR Visual Implementation Guide",
     "section": "Key Implementation Patterns Across All Use Cases",
-    "text": "Key Implementation Patterns Across All Use Cases\n\n1. Universal Reasoning Structure\nclass PRefLexORPattern:\n    \"\"\"Universal pattern for implementing PRefLexOR reasoning\"\"\"\n    \n    def __init__(self, domain):\n        self.domain = domain\n        self.reasoning_template = \"\"\"\n        &lt;|thinking|&gt;\n        1. Problem Understanding:\n           {problem_analysis}\n        \n        2. Data Analysis:\n           {data_evaluation}\n        \n        3. Domain Rules Application:\n           {rules_applied}\n        \n        4. Risk Assessment:\n           {risk_evaluation}\n        \n        5. Decision Synthesis:\n           {decision_logic}\n        &lt;|/thinking|&gt;\n        \n        {final_recommendation}\n        \"\"\"\n\n\n2. Audit Trail Pattern\nclass AuditableReasoning:\n    \"\"\"Ensures every decision is fully traceable\"\"\"\n    \n    def create_audit_record(self, decision):\n        return {\n            \"timestamp\": datetime.now().isoformat(),\n            \"input_data\": decision.input,\n            \"reasoning_process\": decision.thinking,\n            \"decision_factors\": decision.factors,\n            \"final_decision\": decision.output,\n            \"confidence_level\": decision.confidence,\n            \"compliance_checks\": decision.compliance,\n            \"model_version\": self.model_version,\n            \"reviewable_by\": [\"human_expert\", \"auditor\", \"regulator\"]\n        }\n\n\n3. Confidence Calibration Pattern\ndef calibrate_decision_confidence(reasoning_output):\n    \"\"\"Add confidence metrics to decisions\"\"\"\n    \n    confidence_factors = {\n        \"data_completeness\": assess_data_quality(),\n        \"reasoning_clarity\": evaluate_logic_chain(),\n        \"precedent_support\": check_similar_cases(),\n        \"rule_compliance\": verify_against_policies(),\n        \"uncertainty_level\": measure_unknowns()\n    }\n    \n    overall_confidence = weighted_average(confidence_factors)\n    \n    return {\n        \"decision\": reasoning_output,\n        \"confidence\": overall_confidence,\n        \"factors\": confidence_factors,\n        \"caveats\": identify_limitations()\n    }"
+    "text": "Key Implementation Patterns Across All Use Cases\n\n1. Universal Reasoning Structure\nclass PRefLexORPattern:\n    \"\"\"Universal pattern for implementing PRefLexOR reasoning\"\"\"\n\n    def __init__(self, domain):\n        self.domain = domain\n        self.reasoning_template = \"\"\"\n        &lt;|thinking|&gt;\n        1. Problem Understanding:\n           {problem_analysis}\n\n        2. Data Analysis:\n           {data_evaluation}\n\n        3. Domain Rules Application:\n           {rules_applied}\n\n        4. Risk Assessment:\n           {risk_evaluation}\n\n        5. Decision Synthesis:\n           {decision_logic}\n        &lt;|/thinking|&gt;\n\n        {final_recommendation}\n        \"\"\"\n\n\n2. Audit Trail Pattern\nclass AuditableReasoning:\n    \"\"\"Ensures every decision is fully traceable\"\"\"\n    \n    def create_audit_record(self, decision):\n        return {\n            \"timestamp\": datetime.now().isoformat(),\n            \"input_data\": decision.input,\n            \"reasoning_process\": decision.thinking,\n            \"decision_factors\": decision.factors,\n            \"final_decision\": decision.output,\n            \"confidence_level\": decision.confidence,\n            \"compliance_checks\": decision.compliance,\n            \"model_version\": self.model_version,\n            \"reviewable_by\": [\"human_expert\", \"auditor\", \"regulator\"]\n        }\n\n\n3. Confidence Calibration Pattern\ndef calibrate_decision_confidence(reasoning_output):\n    \"\"\"Add confidence metrics to decisions\"\"\"\n\n    confidence_factors = {\n        \"data_completeness\": assess_data_quality(),\n        \"reasoning_clarity\": evaluate_logic_chain(),\n        \"precedent_support\": check_similar_cases(),\n        \"rule_compliance\": verify_against_policies(),\n        \"uncertainty_level\": measure_unknowns()\n    }\n\n    overall_confidence = weighted_average(confidence_factors)\n\n    return {\n        \"decision\": reasoning_output,\n        \"confidence\": overall_confidence,\n        \"factors\": confidence_factors,\n        \"caveats\": identify_limitations()\n    }"
   },
   {
     "objectID": "visual-guide.html#implementation-best-practices",
@@ -439,6 +152,20 @@
     "title": "PRefLexOR Visual Implementation Guide",
     "section": "Summary: The PRefLexOR Advantage",
     "text": "Summary: The PRefLexOR Advantage\n\nTraditional AI vs PRefLexOR: The Trust Gap\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n    subgraph \"Traditional AI\"\n        A[Question] --&gt; B[???]\n        B --&gt; C[Answer]\n    end\n    \n    subgraph \"PRefLexOR\"\n        D[Question] --&gt; E[Transparent Reasoning]\n        E --&gt; F[Documented Steps]\n        F --&gt; G[Explainable Answer]\n    end\n    \n    style B fill:#000000,stroke:#000000,stroke-width:2px,color:#fff\n    style E fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style F fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style G fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nKey Takeaways\n\nTransparency transforms trust in AI systems\nReasoning visibility enables error detection and improvement\nAudit trails satisfy regulatory requirements\nImplementation patterns are reusable across domains\nBusiness value is immediate and measurable\n\n\n\nPRefLexOR: Making AI reasoning visible, verifiable, and valuable.\n\nDisclaimer: All example calculations, performance metrics, and benefit projections in this implementation guide are illustrative frameworks designed to demonstrate methodology. Organizations should validate these approaches through pilot programs and customize calculations based on their specific baseline metrics and operational requirements."
+  },
+  {
+    "objectID": "test-mermaid.html",
+    "href": "test-mermaid.html",
+    "title": "Mermaid Test Page",
+    "section": "",
+    "text": "%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\nflowchart LR\n    A[Start] --&gt; B[Process]\n    B --&gt; C[End]\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Input] --&gt; B{Decision}\n    B --&gt;|Yes| C[Process A]\n    B --&gt;|No| D[Process B]\n    C --&gt; E[Output]\n    D --&gt; E\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style E fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[AI Systems] --&gt; B[Traditional AI]\n    A --&gt; C[PRefLexOR]\n    B --&gt; D[Black Box]\n    B --&gt; E[No Transparency]\n    C --&gt; F[Thinking Tokens]\n    C --&gt; G[Full Transparency]\n    \n    style A fill:#2e8b57,stroke:#1f5f3f,stroke-width:3px,color:#fff\n    style B fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#dc3545,stroke:#dc3545,stroke-width:2px,color:#fff\n    style E fill:#dc3545,stroke:#dc3545,stroke-width:2px,color:#fff\n    style F fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff\n    style G fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff\n\n\n\n\n\n\nIf you can see the diagrams above, Mermaid is working correctly!"
+  },
+  {
+    "objectID": "test-mermaid.html#testing-mermaid-diagrams",
+    "href": "test-mermaid.html#testing-mermaid-diagrams",
+    "title": "Mermaid Test Page",
+    "section": "",
+    "text": "%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\nflowchart LR\n    A[Start] --&gt; B[Process]\n    B --&gt; C[End]\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Input] --&gt; B{Decision}\n    B --&gt;|Yes| C[Process A]\n    B --&gt;|No| D[Process B]\n    C --&gt; E[Output]\n    D --&gt; E\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style E fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[AI Systems] --&gt; B[Traditional AI]\n    A --&gt; C[PRefLexOR]\n    B --&gt; D[Black Box]\n    B --&gt; E[No Transparency]\n    C --&gt; F[Thinking Tokens]\n    C --&gt; G[Full Transparency]\n    \n    style A fill:#2e8b57,stroke:#1f5f3f,stroke-width:3px,color:#fff\n    style B fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#dc3545,stroke:#dc3545,stroke-width:2px,color:#fff\n    style E fill:#dc3545,stroke:#dc3545,stroke-width:2px,color:#fff\n    style F fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff\n    style G fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff\n\n\n\n\n\n\nIf you can see the diagrams above, Mermaid is working correctly!"
   },
   {
     "objectID": "MERMAID_FIXES.html",
@@ -469,11 +196,11 @@
     "text": "🔧 Quick Fix Commands\n\nOption 1: Use Fixed Configuration\nReplace current _quarto.yml with the simple version:\ncd presentation-site\ncp _quarto.yml _quarto-complex.yml\ncp _quarto-simple.yml _quarto.yml\nquarto render\n\n\nOption 2: Test Current State\ncd presentation-site\n./build.sh test\n# Open _site/test-mermaid.html to verify fixes\n\n\nOption 3: Apply Remaining Fixes\nThe remaining diagrams in visual-guide.qmd and technical-deep-dive.qmd can be fixed by:\n\nFind and Replace in each file:\n\nFind: %%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#[^']*'}}}%%\nReplace: %%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\n\nUpdate style statements:\n\nFind: style NodeName fill:#[darkcolor],color:#fff\nReplace: style NodeName fill:#ffffff,stroke:#[darkcolor],stroke-width:2px,color:#000"
   },
   {
-    "objectID": "MERMAID_FIXES.html#current-status",
-    "href": "MERMAID_FIXES.html#current-status",
+    "objectID": "MERMAID_FIXES.html#current-status---all-complete",
+    "href": "MERMAID_FIXES.html#current-status---all-complete",
     "title": "",
-    "section": "📊 Current Status",
-    "text": "📊 Current Status\n\n\n\nFile\nDiagrams\nFixed\nRemaining\n\n\n\n\nindex.qmd\n4\n✅ 4\n✅ 0\n\n\nexecutive-summary.qmd\n5\n✅ 5\n✅ 0\n\n\nvisual-guide.qmd\n~12\n✅ 1\n⏳ 11\n\n\ntechnical-deep-dive.qmd\n~10\n✅ 1\n⏳ 9\n\n\ntest-mermaid.qmd\n3\n✅ 3\n✅ 0"
+    "section": "📊 Current Status - ALL COMPLETE! 🎉",
+    "text": "📊 Current Status - ALL COMPLETE! 🎉\n\n\n\nFile\nDiagrams\nFixed\nRemaining\n\n\n\n\nindex.qmd\n4\n✅ 4\n✅ 0\n\n\nexecutive-summary.qmd\n5\n✅ 5\n✅ 0\n\n\nvisual-guide.qmd\n10\n✅ 10\n✅ 0\n\n\ntechnical-deep-dive.qmd\n12\n✅ 12\n✅ 0\n\n\ntest-mermaid.qmd\n3\n✅ 3\n✅ 0\n\n\nTOTAL\n34\n✅ 34\n✅ 0"
   },
   {
     "objectID": "MERMAID_FIXES.html#next-steps",
@@ -560,24 +287,346 @@
     "text": "Key Takeaway\n\nPRefLexOR transforms AI from an opaque oracle into a transparent advisor.\nIn an era of increasing regulation and decreasing trust in AI, transparent reasoning is not just nice to have - it’s a business imperative.\nThe question isn’t whether to adopt transparent AI, but how quickly you can implement it before your competitors do.\n\n\nTransform your AI from black box to glass box. Make every decision defendable."
   },
   {
-    "objectID": "test-mermaid.html",
-    "href": "test-mermaid.html",
-    "title": "Mermaid Test Page",
-    "section": "",
-    "text": "%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\nflowchart LR\n    A[Start] --&gt; B[Process]\n    B --&gt; C[End]\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Input] --&gt; B{Decision}\n    B --&gt;|Yes| C[Process A]\n    B --&gt;|No| D[Process B]\n    C --&gt; E[Output]\n    D --&gt; E\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style E fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[AI Systems] --&gt; B[Traditional AI]\n    A --&gt; C[PRefLexOR]\n    B --&gt; D[Black Box]\n    B --&gt; E[No Transparency]\n    C --&gt; F[Thinking Tokens]\n    C --&gt; G[Full Transparency]\n    \n    style A fill:#2e8b57,stroke:#1f5f3f,stroke-width:3px,color:#fff\n    style B fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#dc3545,stroke:#dc3545,stroke-width:2px,color:#fff\n    style E fill:#dc3545,stroke:#dc3545,stroke-width:2px,color:#fff\n    style F fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff\n    style G fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff\n\n\n\n\n\n\nIf you can see the diagrams above, Mermaid is working correctly!"
-  },
-  {
-    "objectID": "test-mermaid.html#testing-mermaid-diagrams",
-    "href": "test-mermaid.html#testing-mermaid-diagrams",
-    "title": "Mermaid Test Page",
-    "section": "",
-    "text": "%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\nflowchart LR\n    A[Start] --&gt; B[Process]\n    B --&gt; C[End]\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Input] --&gt; B{Decision}\n    B --&gt;|Yes| C[Process A]\n    B --&gt;|No| D[Process B]\n    C --&gt; E[Output]\n    D --&gt; E\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style E fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[AI Systems] --&gt; B[Traditional AI]\n    A --&gt; C[PRefLexOR]\n    B --&gt; D[Black Box]\n    B --&gt; E[No Transparency]\n    C --&gt; F[Thinking Tokens]\n    C --&gt; G[Full Transparency]\n    \n    style A fill:#2e8b57,stroke:#1f5f3f,stroke-width:3px,color:#fff\n    style B fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#dc3545,stroke:#dc3545,stroke-width:2px,color:#fff\n    style E fill:#dc3545,stroke:#dc3545,stroke-width:2px,color:#fff\n    style F fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff\n    style G fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff\n\n\n\n\n\n\nIf you can see the diagrams above, Mermaid is working correctly!"
-  },
-  {
-    "objectID": "MERMAID_FIXES.html#current-status---all-complete",
-    "href": "MERMAID_FIXES.html#current-status---all-complete",
+    "objectID": "diagrams-fallback.html",
+    "href": "diagrams-fallback.html",
     "title": "",
-    "section": "📊 Current Status - ALL COMPLETE! 🎉",
-    "text": "📊 Current Status - ALL COMPLETE! 🎉\n\n\n\nFile\nDiagrams\nFixed\nRemaining\n\n\n\n\nindex.qmd\n4\n✅ 4\n✅ 0\n\n\nexecutive-summary.qmd\n5\n✅ 5\n✅ 0\n\n\nvisual-guide.qmd\n10\n✅ 10\n✅ 0\n\n\ntechnical-deep-dive.qmd\n12\n✅ 12\n✅ 0\n\n\ntest-mermaid.qmd\n3\n✅ 3\n✅ 0\n\n\nTOTAL\n34\n✅ 34\n✅ 0"
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "diagrams-fallback.html#standard-llm-vs-preflexor-flow",
+    "href": "diagrams-fallback.html#standard-llm-vs-preflexor-flow",
+    "title": "",
+    "section": "Standard LLM vs PRefLexOR Flow",
+    "text": "Standard LLM vs PRefLexOR Flow\nStandard LLM:\nUser Input → [BLACK BOX] → Output\n     ↓           ???          ↓\n\"Approve loan\"            \"Approved\"\n\nPRefLexOR:\nUser Input → [THINKING PROCESS] → [REASONING] → Output\n     ↓              ↓                   ↓          ↓\n\"Approve loan\"  \"Check credit\"    \"Score: 750\"  \"Approved\"\n                \"Check DTI\"       \"DTI: 35%\"    \n                \"Check history\"   \"Clean: ✓\"\n                \"Apply rules\"     \"Qualified\""
+  },
+  {
+    "objectID": "diagrams-fallback.html#six-business-applications",
+    "href": "diagrams-fallback.html#six-business-applications",
+    "title": "",
+    "section": "Six Business Applications",
+    "text": "Six Business Applications\n                        PRefLexOR\n                          │\n        ┌─────────────────┼─────────────────┐\n        │                 │                 │\n   Financial        Healthcare        Supply Chain\n    Services                            \n        │                 │                 │\n   - Loan Approval   - Diagnosis       - Risk Assessment\n   - Risk Analysis   - Treatment       - Mitigation\n   - Compliance      - Documentation   - Monitoring\n        │                 │                 │\n      Legal          Investment       Product Dev\n        │                 │                 │\n   - Contract        - Analysis        - Strategy\n   - Risk Review     - Compliance      - Planning\n   - Negotiation     - Documentation   - Decisions"
+  },
+  {
+    "objectID": "diagrams-fallback.html#training-process",
+    "href": "diagrams-fallback.html#training-process",
+    "title": "",
+    "section": "Training Process",
+    "text": "Training Process\nPhase I: ORPO Training\nStandard Model → Preference Learning → Learns to Think First\n\nPhase II: DPO Refinement  \nThink First → Quality Enhancement → Production Model\n\nEnterprise Deployment\nProduction Model → Domain Config → Transparent Decisions → Audit Trails"
+  },
+  {
+    "objectID": "diagrams-fallback.html#risk-assessment-matrix",
+    "href": "diagrams-fallback.html#risk-assessment-matrix",
+    "title": "",
+    "section": "Risk Assessment Matrix",
+    "text": "Risk Assessment Matrix\nRisk Factors:           Assessment:\nGeopolitical: 8/10  →    │████████░░│ HIGH\nFinancial: 4/10     →    │████░░░░░░│ LOW  \nOperational: 6/10   →    │██████░░░░│ MED\nDependency: 8/10    →    │████████░░│ HIGH\n\nOverall Risk: MEDIUM (6.2/10)"
+  },
+  {
+    "objectID": "diagrams-fallback.html#investment-analysis-framework",
+    "href": "diagrams-fallback.html#investment-analysis-framework",
+    "title": "",
+    "section": "Investment Analysis Framework",
+    "text": "Investment Analysis Framework\nMarket Data → PRefLexOR Analysis → Investment Decision\n     ↓              ↓                       ↓\n- Stock Price  - Fundamental          - Buy/Hold/Sell\n- Financials   - Technical            - Price Target\n- News         - Risk Assessment      - Risk Level"
+  },
+  {
+    "objectID": "diagrams-fallback.html#clinical-decision-tree",
+    "href": "diagrams-fallback.html#clinical-decision-tree",
+    "title": "",
+    "section": "Clinical Decision Tree",
+    "text": "Clinical Decision Tree\nPatient Symptoms → Clinical Analysis → Diagnosis & Action\n      ↓                    ↓                  ↓\n\"Chest pain\"        Risk Assessment:    \"High Risk\"\n\"45yo male\"         - Cardiac: 30%          ↓\n                    - Pulmonary: 15%   Emergency\n                    - GI: 20%          Evaluation\n                    - Other: 35%       Required\nUse these text-based diagrams if Mermaid rendering fails."
+  },
+  {
+    "objectID": "CONTRAST_FIXES.html",
+    "href": "CONTRAST_FIXES.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "CONTRAST_FIXES.html#css-styling-issues-resolved",
+    "href": "CONTRAST_FIXES.html#css-styling-issues-resolved",
+    "title": "",
+    "section": "🎨 CSS Styling Issues Resolved",
+    "text": "🎨 CSS Styling Issues Resolved\n\n✅ 1. Highlight Box (.highlight-box)\nProblem: Dark gradient background with potentially low contrast text\nSolution: Changed to high-contrast light theme\n/* BEFORE: Dark gradient with white text */\nbackground: linear-gradient(135deg, #2e8b57 0%, #1f5f3f 100%);\ncolor: white;\n\n/* AFTER: Light background with dark text */\nbackground: #e7f3ff;\ncolor: #000000 !important;\nborder: 3px solid #2e8b57;\nResult: - Light blue background (#e7f3ff) - Black text (#000000) for maximum contrast - Dark green border (#2e8b57) for definition - Headers in dark green for hierarchy\n\n\n✅ 2. Feature Boxes (.feature-box)\nEnhanced for better readability\n.feature-box h4 {\n    color: #1f5f3f;  /* Darker green for better contrast */\n    font-weight: 600;\n}\n\n.feature-box p, .feature-box li {\n    color: #000000;  /* Explicit black text */\n}\n\n\n✅ 3. Metric Cards (.metric-card)\nProblem: Light background made borders/text less visible\nSolution: Enhanced contrast design\n/* BEFORE: Light blue background */\nbackground-color: #e7f3ff;\nborder: 1px solid #b3d9ff;\n\n/* AFTER: White background with strong border */\nbackground-color: #ffffff;\nborder: 2px solid #2e8b57;\nbox-shadow: 0 2px 4px rgba(46, 139, 87, 0.1);\nResult: - White background for maximum contrast - Strong green border for definition - Black text for labels - Dark green for values\n\n\n✅ 4. Mermaid Diagrams\nProblem: Black boxes with invisible text\nSolution: Applied consistent light theme (see MERMAID_FIXES.md) - All diagrams use white/light backgrounds - Dark text on light backgrounds - Strong colored borders for definition"
+  },
+  {
+    "objectID": "CONTRAST_FIXES.html#contrast-ratios-achieved",
+    "href": "CONTRAST_FIXES.html#contrast-ratios-achieved",
+    "title": "",
+    "section": "🔍 Contrast Ratios Achieved",
+    "text": "🔍 Contrast Ratios Achieved\nAll elements now meet WCAG AA standards (4.5:1 minimum):\n\n\n\nElement\nBackground\nText\nContrast Ratio\nStatus\n\n\n\n\nHighlight Box\n#e7f3ff\n#000000\n17.9:1\n✅ Excellent\n\n\nFeature Box\n#f0f8f4\n#000000\n16.8:1\n✅ Excellent\n\n\nMetric Cards\n#ffffff\n#000000\n21:1\n✅ Perfect\n\n\nMermaid Nodes\n#ffffff\n#000000\n21:1\n✅ Perfect\n\n\nHeaders\nVarious\n#1f5f3f\n9.2:1\n✅ Excellent"
+  },
+  {
+    "objectID": "CONTRAST_FIXES.html#design-principles-applied",
+    "href": "CONTRAST_FIXES.html#design-principles-applied",
+    "title": "",
+    "section": "🎯 Design Principles Applied",
+    "text": "🎯 Design Principles Applied\n\n1. Maximum Contrast\n\nWhite backgrounds (#ffffff) wherever possible\nBlack text (#000000) for primary content\nDark colors only for emphasis/headers\n\n\n\n2. Clear Hierarchy\n\nPrimary: Black text on white background\nSecondary: Dark green (#1f5f3f) for headers\nAccent: Medium green (#2e8b57) for borders/highlights\n\n\n\n3. Accessibility First\n\nAll text meets WCAG AA standards\nNo reliance on color alone for meaning\nStrong borders provide definition\nConsistent spacing and sizing"
+  },
+  {
+    "objectID": "CONTRAST_FIXES.html#test-the-results",
+    "href": "CONTRAST_FIXES.html#test-the-results",
+    "title": "",
+    "section": "🚀 Test the Results",
+    "text": "🚀 Test the Results\ncd presentation-site\nquarto preview\n# Navigate to any page - all text should be crisp and readable"
+  },
+  {
+    "objectID": "CONTRAST_FIXES.html#before-vs-after",
+    "href": "CONTRAST_FIXES.html#before-vs-after",
+    "title": "",
+    "section": "📊 Before vs After",
+    "text": "📊 Before vs After\n\nBefore:\n\n❌ Dark gradients with white text\n❌ Light colors with poor definition\n❌ Mermaid diagrams with black boxes\n❌ Low contrast ratios (2-3:1)\n\n\n\nAfter:\n\n✅ Light backgrounds with dark text\n✅ Strong borders for definition\n✅ All diagrams readable\n✅ High contrast ratios (15-21:1)"
+  },
+  {
+    "objectID": "CONTRAST_FIXES.html#alternative-options",
+    "href": "CONTRAST_FIXES.html#alternative-options",
+    "title": "",
+    "section": "💡 Alternative Options",
+    "text": "💡 Alternative Options\nIf you prefer the dark theme aesthetic, the CSS includes a commented-out dark version:\n/* Uncomment this section in styles.css for dark theme */\n.highlight-box {\n    background: linear-gradient(135deg, #2e8b57 0%, #1f5f3f 100%);\n    color: #ffffff !important;\n    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);\n}\nBut the light theme provides significantly better accessibility and readability.\n\nAll contrast issues are now resolved! 🎉"
+  },
+  {
+    "objectID": "DISCLAIMER_SUMMARY.html",
+    "href": "DISCLAIMER_SUMMARY.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "DISCLAIMER_SUMMARY.html#overview",
+    "href": "DISCLAIMER_SUMMARY.html#overview",
+    "title": "",
+    "section": "Overview",
+    "text": "Overview\nAdded comprehensive disclaimers throughout the PRefLexOR presentation to clarify that all quantified benefits are framework-based projections rather than measured data."
+  },
+  {
+    "objectID": "DISCLAIMER_SUMMARY.html#disclaimers-added",
+    "href": "DISCLAIMER_SUMMARY.html#disclaimers-added",
+    "title": "",
+    "section": "✅ Disclaimers Added",
+    "text": "✅ Disclaimers Added\n\n1. Executive Summary (executive-summary.qmd)\n\nIndividual Impact Claims: Added asterisks (*) to all six business use case impact percentages\nROI Example: Added disclaimer noting “Example calculation based on framework projections”\nComprehensive Disclaimer: Added prominent warning box before Implementation Roadmap explaining framework methodology\n\n\n\n2. Technical Deep Dive (technical-deep-dive.qmd)\n\nSection Title: Changed “Quantifiable Benefits” to “Projected Benefits Framework*”\nDiagram Labels: Added asterisks to all benefit percentages in Mermaid diagram\nROI Section: Retitled to “ROI Calculation Framework Example*” with framework notes\nMethodology Disclaimer: Added comprehensive warning before Future Directions section\n\n\n\n3. Index Page (index.qmd)\n\nFooter Disclaimer: Added general note about framework-based estimates\n\n\n\n4. Visual Guide (visual-guide.qmd)\n\nFooter Disclaimer: Added specific note about illustrative frameworks and pilot validation"
+  },
+  {
+    "objectID": "DISCLAIMER_SUMMARY.html#disclaimer-language-strategy",
+    "href": "DISCLAIMER_SUMMARY.html#disclaimer-language-strategy",
+    "title": "",
+    "section": "🎯 Disclaimer Language Strategy",
+    "text": "🎯 Disclaimer Language Strategy\n\n**Asterisk System (*)**\n\nSimple asterisks mark all quantified claims\nDirects attention to framework nature of projections\n\n\n\nFramework Language\n\nEmphasizes “framework-based projections”\nUses “methodology” and “calculation framework”\nAvoids claiming actual measured results\n\n\n\nValidation Requirements\n\nAll disclaimers mention need for pilot programs\nEmphasizes customization for specific organizations\nNotes that actual results will vary\n\n\n\nWarning Box Styling\n\nUses .alert-box .alert-warning for visibility\nProminent placement before key sections\nProfessional but clear cautionary tone"
+  },
+  {
+    "objectID": "DISCLAIMER_SUMMARY.html#key-disclaimer-components",
+    "href": "DISCLAIMER_SUMMARY.html#key-disclaimer-components",
+    "title": "",
+    "section": "📋 Key Disclaimer Components",
+    "text": "📋 Key Disclaimer Components\n\nWhat We Clarify:\n\nSource: Framework-based projections, not measured data\nVariability: Results depend on organization-specific factors\nValidation: Requires pilot testing and customization\nMethodology: Demonstrates calculation approach\nBusiness Case: Framework for developing custom ROI analysis\n\n\n\nWhat We Emphasize:\n\nFramework provides systematic approach\nMethodology is sound and reusable\nOrganizations should customize inputs\nPilot programs essential for validation\nBusiness case development requires specific baseline data"
+  },
+  {
+    "objectID": "DISCLAIMER_SUMMARY.html#implementation-benefits",
+    "href": "DISCLAIMER_SUMMARY.html#implementation-benefits",
+    "title": "",
+    "section": "🚀 Implementation Benefits",
+    "text": "🚀 Implementation Benefits\n\nLegal Protection\n\nClear separation between framework and claims\nEmphasis on methodology over specific results\nRequirement for organizational validation\n\n\n\nCredibility Enhancement\n\nShows responsible approach to projections\nDemonstrates framework thinking\nBuilds trust through transparency\n\n\n\nBusiness Value\n\nProvides structured ROI methodology\nEnables custom business case development\nShows systematic approach to benefit calculation"
+  },
+  {
+    "objectID": "DISCLAIMER_SUMMARY.html#affected-metrics",
+    "href": "DISCLAIMER_SUMMARY.html#affected-metrics",
+    "title": "",
+    "section": "📊 Affected Metrics",
+    "text": "📊 Affected Metrics\n\nExecutive Summary Disclaimers:\n\n80% reduction in compliance violations*\n65% reduction in diagnostic errors*\n70% improvement in risk prediction accuracy*\n50% reduction in contract review time*\n40% improvement in client trust scores*\n60% better product success rate*\n162% ROI example*\n\n\n\nTechnical Deep Dive Disclaimers:\n\n80% ↓ Violations*\n95% Audit Success*\n70% Faster Decisions*\n65% ↓ Errors*\n40% ↑ Trust*\n60% ↑ Satisfaction*\n$2.1M ROI calculation framework*"
+  },
+  {
+    "objectID": "DISCLAIMER_SUMMARY.html#best-practices-applied",
+    "href": "DISCLAIMER_SUMMARY.html#best-practices-applied",
+    "title": "",
+    "section": "💡 Best Practices Applied",
+    "text": "💡 Best Practices Applied\n\nTransparency First\n\nAll quantified claims clearly marked\nFramework nature explicitly stated\nValidation requirements emphasized\n\n\n\nProfessional Positioning\n\nMaintains credibility of methodology\nShows systematic thinking approach\nEnables business case development\n\n\n\nLegal Compliance\n\nAvoids unsubstantiated claims\nEmphasizes framework over guarantees\nRequires organizational validation\n\n\nResult: All presentation materials now clearly position quantified benefits as framework-based projections designed to demonstrate calculation methodology, requiring organizational validation through pilot programs and custom business case development."
+  },
+  {
+    "objectID": "mermaid-styles.html",
+    "href": "mermaid-styles.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "mermaid-styles.html#standard-theme-configuration",
+    "href": "mermaid-styles.html#standard-theme-configuration",
+    "title": "",
+    "section": "Standard Theme Configuration",
+    "text": "Standard Theme Configuration\nUse this init block for all Mermaid diagrams to ensure consistent, readable styling:\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57', 'secondaryColor':'#e7f3ff', 'tertiaryColor':'#f8f9fa'}}}%%"
+  },
+  {
+    "objectID": "mermaid-styles.html#color-palette",
+    "href": "mermaid-styles.html#color-palette",
+    "title": "",
+    "section": "Color Palette",
+    "text": "Color Palette\n\nBackground Colors (Light with good contrast)\n\nPrimary Light: #e7f3ff (light blue)\nSuccess Light: #e8f5e8 (light green)\n\nWarning Light: #fff3cd (light yellow)\nDanger Light: #ffebee (light red)\nInfo Light: #e7f3ff (light blue)\nWhite: #ffffff (white)\n\n\n\nAccent Colors (For emphasis)\n\nPrimary: #2e8b57 (dark green)\nSuccess: #28a745 (green)\nWarning: #ffc107 (yellow)\nDanger: #dc3545 (red)\nInfo: #007bff (blue)\n\n\n\nBorder Colors\n\nPrimary Border: #2e8b57\nSuccess Border: #28a745\nWarning Border: #ffc107\nDanger Border: #dc3545"
+  },
+  {
+    "objectID": "mermaid-styles.html#standard-style-patterns",
+    "href": "mermaid-styles.html#standard-style-patterns",
+    "title": "",
+    "section": "Standard Style Patterns",
+    "text": "Standard Style Patterns\n\nFor Important Central Nodes\nstyle NodeName fill:#2e8b57,stroke:#1f5f3f,stroke-width:3px,color:#fff\n\n\nFor Regular Nodes (Light Background)\nstyle NodeName fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n\n\nFor Success/Positive Nodes\nstyle NodeName fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\nFor Warning/Caution Nodes\nstyle NodeName fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n\n\nFor Error/Negative Nodes\nstyle NodeName fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n\n\nFor Emphasis/Action Nodes (Dark Background)\nstyle NodeName fill:#28a745,stroke:#28a745,stroke-width:2px,color:#fff"
+  },
+  {
+    "objectID": "mermaid-styles.html#example-usage",
+    "href": "mermaid-styles.html#example-usage",
+    "title": "",
+    "section": "Example Usage",
+    "text": "Example Usage\n\nBasic Flowchart\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\nflowchart LR\n    A[Input] --&gt; B[Process]\n    B --&gt; C[Output]\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\nDecision Tree\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Start] --&gt; B{Decision}\n    B --&gt;|Yes| C[Action A]\n    B --&gt;|No| D[Action B]\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style C fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000"
+  },
+  {
+    "objectID": "mermaid-styles.html#text-contrast-rules",
+    "href": "mermaid-styles.html#text-contrast-rules",
+    "title": "",
+    "section": "Text Contrast Rules",
+    "text": "Text Contrast Rules\n\nLight backgrounds: Always use color:#000 (black text)\nDark backgrounds: Always use color:#fff (white text)\nMinimum contrast ratio: 4.5:1 for accessibility"
+  },
+  {
+    "objectID": "mermaid-styles.html#common-issues-and-fixes",
+    "href": "mermaid-styles.html#common-issues-and-fixes",
+    "title": "",
+    "section": "Common Issues and Fixes",
+    "text": "Common Issues and Fixes\n\nIssue: Black boxes or invisible text\nFix: Use light background colors with dark text:\nstyle Node fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n\n\nIssue: Poor contrast\nFix: Test combinations at https://webaim.org/resources/contrastchecker/\n\n\nIssue: Mindmaps not rendering\nFix: Use regular graph instead:\ngraph TD\n    Root[Main Topic]\n    Root --&gt; A[Subtopic 1]\n    Root --&gt; B[Subtopic 2]"
+  },
+  {
+    "objectID": "mermaid-styles.html#accessibility-guidelines",
+    "href": "mermaid-styles.html#accessibility-guidelines",
+    "title": "",
+    "section": "Accessibility Guidelines",
+    "text": "Accessibility Guidelines\n\nColor alone should not convey meaning\nUse patterns or text in addition to color\nEnsure 4.5:1 contrast ratio minimum\nTest with colorblind simulators"
+  },
+  {
+    "objectID": "mermaid-styles.html#template-for-new-diagrams",
+    "href": "mermaid-styles.html#template-for-new-diagrams",
+    "title": "",
+    "section": "Template for New Diagrams",
+    "text": "Template for New Diagrams\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Your Node] --&gt; B[Another Node]\n    \n    style A fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\nCopy this template and modify as needed for consistent, readable diagrams."
+  },
+  {
+    "objectID": "technical-deep-dive.html",
+    "href": "technical-deep-dive.html",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "",
+    "text": "Preference-based Recursive Language Modeling for Exploratory Optimization of Reasoning\nPRefLexOR represents a fundamental shift in how AI systems make and communicate decisions. Instead of operating as black boxes, PRefLexOR models expose their reasoning process through special “thinking tokens.”\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[User Query] --&gt; B[PRefLexOR Model]\n    B --&gt; C{Thinking Process}\n    C --&gt; D[Step 1: Analyze Input]\n    C --&gt; E[Step 2: Apply Domain Rules]\n    C --&gt; F[Step 3: Evaluate Options]\n    C --&gt; G[Step 4: Risk Assessment]\n    D & E & F & G --&gt; H[Reasoning Output]\n    H --&gt; I[Final Answer]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style C fill:#ffffff,stroke:#28a745,stroke-width:3px,color:#000\n    style H fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style I fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\nStandard LLM\nQ: \"Should we approve this loan?\"\nA: \"Your loan is approved with 4.5% interest rate.\"\n\n\nPRefLexOR\nQ: \"Should we approve this loan?\"\n&lt;|thinking|&gt;\nLet me analyze this mortgage application step by step:\n1. Credit score: 720 - Good, qualifies for prime rates\n2. DTI ratio: 38% - Below 43% threshold, acceptable\n3. Employment: 5 years stable - Strong indicator\n4. Down payment: 20% - Avoids PMI, reduces risk\n5. Property value: $400k in growing market - Good collateral\nBased on risk factors, recommending Tier 2 pricing at 4.5%\n&lt;|/thinking|&gt;\nA: \"Your loan is approved with 4.5% interest rate.\""
+  },
+  {
+    "objectID": "technical-deep-dive.html#introduction-to-preflexor",
+    "href": "technical-deep-dive.html#introduction-to-preflexor",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "",
+    "text": "Preference-based Recursive Language Modeling for Exploratory Optimization of Reasoning\nPRefLexOR represents a fundamental shift in how AI systems make and communicate decisions. Instead of operating as black boxes, PRefLexOR models expose their reasoning process through special “thinking tokens.”\n\n\n\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[User Query] --&gt; B[PRefLexOR Model]\n    B --&gt; C{Thinking Process}\n    C --&gt; D[Step 1: Analyze Input]\n    C --&gt; E[Step 2: Apply Domain Rules]\n    C --&gt; F[Step 3: Evaluate Options]\n    C --&gt; G[Step 4: Risk Assessment]\n    D & E & F & G --&gt; H[Reasoning Output]\n    H --&gt; I[Final Answer]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style C fill:#ffffff,stroke:#28a745,stroke-width:3px,color:#000\n    style H fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style I fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\n\n\n\nStandard LLM\nQ: \"Should we approve this loan?\"\nA: \"Your loan is approved with 4.5% interest rate.\"\n\n\nPRefLexOR\nQ: \"Should we approve this loan?\"\n&lt;|thinking|&gt;\nLet me analyze this mortgage application step by step:\n1. Credit score: 720 - Good, qualifies for prime rates\n2. DTI ratio: 38% - Below 43% threshold, acceptable\n3. Employment: 5 years stable - Strong indicator\n4. Down payment: 20% - Avoids PMI, reduces risk\n5. Property value: $400k in growing market - Good collateral\nBased on risk factors, recommending Tier 2 pricing at 4.5%\n&lt;|/thinking|&gt;\nA: \"Your loan is approved with 4.5% interest rate.\""
+  },
+  {
+    "objectID": "technical-deep-dive.html#the-problem-with-standard-llms",
+    "href": "technical-deep-dive.html#the-problem-with-standard-llms",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "The Problem with Standard LLMs",
+    "text": "The Problem with Standard LLMs\n\nBlack Box Decision Making\nStandard LLMs operate without transparency, creating significant risks:\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\nflowchart LR\n    subgraph \"Standard LLM Process\"\n        A[Input] --&gt; B[Neural Network&lt;br/&gt;100B+ parameters]\n        B --&gt; C[Output]\n    end\n    \n    subgraph \"What's Missing\"\n        D[No Reasoning Visible]\n        E[No Audit Trail]\n        F[No Error Detection]\n        G[No Compliance Doc]\n    end\n    \n    style B fill:#000000,stroke:#000000,stroke-width:2px,color:#fff\n    style D fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style E fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style F fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style G fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nReal-World Consequences\n\nMedical Diagnosis Example\n# Standard LLM - Dangerous lack of transparency\nprompt = \"Patient has fever, cough, fatigue. What's the diagnosis?\"\nresponse = \"Likely viral infection. Recommend rest and fluids.\"\n# Missing: Differential diagnosis, risk factors, red flags\n\n\nFinancial Services Example\n# Standard LLM - Compliance nightmare\nprompt = \"Should we approve this $500k business loan?\"\nresponse = \"Yes, approve the loan.\"\n# Missing: Risk analysis, credit evaluation, regulatory compliance"
+  },
+  {
+    "objectID": "technical-deep-dive.html#preflexors-core-innovation",
+    "href": "technical-deep-dive.html#preflexors-core-innovation",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "PRefLexOR’s Core Innovation",
+    "text": "PRefLexOR’s Core Innovation\n\nTwo-Phase Training Approach\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n    subgraph Phase1[\"Phase I: ORPO\"]\n        A[Base Model] --&gt; B[Preference Data]\n        B --&gt; C[Learn to Think First]\n        C --&gt; D[Generate Reasoning]\n    end\n    \n    subgraph Phase2[\"Phase II: DPO with EXO\"]\n        D --&gt; E[Quality Refinement]\n        E --&gt; F[Optimize Reasoning]\n        F --&gt; G[Production Model]\n    end\n    \n    style Phase1 fill:#e7f3ff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style Phase2 fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style A fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style C fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style D fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style E fill:#ffffff,stroke:#28a745,stroke-width:2px,color:#000\n    style F fill:#ffffff,stroke:#28a745,stroke-width:2px,color:#000\n    style G fill:#28a745,stroke:#28a745,stroke-width:3px,color:#fff\n\n\n\n\n\n\n\nPhase I: ORPO (Odds Ratio Preference Optimization)\n# Teaching models to think before speaking\npreferred_response = \"\"\"\n&lt;|thinking|&gt;\nThe user asks about loan approval. I need to:\n1. Check credit score against thresholds\n2. Calculate debt-to-income ratio\n3. Verify employment stability\n4. Assess collateral value\n5. Apply regulatory requirements\n&lt;|/thinking|&gt;\nBased on analysis, loan approved with conditions...\n\"\"\"\n\nrejected_response = \"\"\"\nLoan approved.\n\"\"\"\n\n\nPhase II: DPO with EXO (Direct Preference Optimization)\n# Refining reasoning quality\nhigh_quality_reasoning = \"\"\"\n&lt;|thinking|&gt;\nMedical case analysis:\n- Symptom clustering suggests respiratory infection\n- Duration (3 days) indicates acute condition  \n- No red flags for bacterial infection\n- Age/history support viral etiology\n- Risk stratification: Low\n- Differential: COVID-19, Influenza, Common cold\n&lt;|/thinking|&gt;\nRecommend symptomatic treatment with monitoring...\n\"\"\""
+  },
+  {
+    "objectID": "technical-deep-dive.html#technical-architecture-deep-dive",
+    "href": "technical-deep-dive.html#technical-architecture-deep-dive",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "Technical Architecture Deep Dive",
+    "text": "Technical Architecture Deep Dive\n\nSystem Architecture\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n    subgraph \"User Interface Layer\"\n        A[Streamlit Apps]\n        B[API Endpoints]\n    end\n    \n    subgraph \"Business Logic Layer\"\n        C[Domain Rules Engine]\n        D[Reasoning Patterns]\n        E[Export Handlers]\n    end\n    \n    subgraph \"PRefLexOR Engine\"\n        F[Thinking Extractor]\n        G[Response Generator]\n        H[Audit Logger]\n    end\n    \n    subgraph \"Model Layer\"\n        I[Ollama Runtime]\n        J[PRefLexOR Models]\n    end\n    \n    A & B --&gt; C & D & E\n    C & D & E --&gt; F & G & H\n    F & G & H --&gt; I & J\n    \n    style A fill:#e7f3ff,stroke:#007bff,stroke-width:2px,color:#000\n    style F fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style J fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nKey Components\n\n1. Thinking Token Extractor\ndef extract_thinking_section(self, response: str) -&gt; Dict[str, str]:\n    \"\"\"Extract thinking and answer sections from response\"\"\"\n    thinking_start = \"&lt;|thinking|&gt;\"\n    thinking_end = \"&lt;|/thinking|&gt;\"\n    \n    if thinking_start in response and thinking_end in response:\n        start_idx = response.find(thinking_start) + len(thinking_start)\n        end_idx = response.find(thinking_end)\n        \n        thinking = response[start_idx:end_idx].strip()\n        answer = response[end_idx + len(thinking_end):].strip()\n        \n        return {\n            \"thinking\": thinking,\n            \"answer\": answer,\n            \"has_thinking\": True\n        }\n\n\n2. Domain-Specific System Prompts\nFINANCIAL_SYSTEM_PROMPT = \"\"\"You are a senior credit analyst...\nProvide detailed analysis using &lt;|thinking|&gt; tags showing:\n- Risk factor evaluation\n- Regulatory compliance checks  \n- Credit score analysis\n- Debt-to-income calculations\nFocus on CFPB compliance and fair lending practices.\"\"\""
+  },
+  {
+    "objectID": "technical-deep-dive.html#business-use-cases",
+    "href": "technical-deep-dive.html#business-use-cases",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "Six Business Use Cases - Implementation Analysis",
+    "text": "Six Business Use Cases - Implementation Analysis\n\n5.1 Financial Risk Assessment\n\nImplementation Architecture\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph LR\n    A[Loan Application] --&gt; B[PRefLexOR Analysis]\n    B --&gt; C{Risk Assessment}\n    C --&gt; D[Credit Analysis]\n    C --&gt; E[DTI Calculation]\n    C --&gt; F[Compliance Check]\n    C --&gt; G[Collateral Review]\n    D & E & F & G --&gt; H[Decision Matrix]\n    H --&gt; I[Transparent Decision]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style I fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nImplementation Code\n# Comprehensive risk assessment with thinking tokens\ndef analyze_mortgage_application(self, application_data):\n    analysis_prompt = f\"\"\"\n    &lt;|thinking|&gt;\n    Analyzing mortgage application:\n    1. Credit Score: {application_data['credit_score']}\n       - Threshold check: {application_data['credit_score']} &gt; 620 ✓\n       - Risk tier: {'Prime' if application_data['credit_score'] &gt; 740 else 'Near-prime'}\n       \n    2. DTI Calculation:\n       - Monthly debt: ${application_data['monthly_debt']}\n       - Monthly income: ${application_data['monthly_income']}  \n       - DTI: {(application_data['monthly_debt']/application_data['monthly_income'])*100:.1f}%\n       - Regulatory limit: 43% - {'PASS' if dti &lt; 43 else 'FAIL'}\n       \n    3. Compliance Checks:\n       - CFPB affordability: Checking ATR/QM rules\n       - Fair lending: No discriminatory factors\n       - State regulations: Conforming to local laws\n    &lt;|/thinking|&gt;\n    \n    Based on comprehensive analysis, loan decision is...\n    \"\"\"\n\n\nKey Differentiators\n\n\nRegulatory Compliance Trail: Every decision documents compliance\nRisk Factor Transparency: All factors visible for audit\nExplainable Decisions: Can defend in court/audit\nConsistent Methodology: Same analysis process every time\n\n\n\n\nBusiness Value\n\nReduced Compliance Risk: Full audit trail\nFaster Approvals: Automated but transparent\nCustomer Trust: Can explain decisions\nRegulatory Defense: Complete documentation\n\n\n\n\n5.2 Medical Diagnosis Support\n\nClinical Reasoning Architecture\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Patient Presentation] --&gt; B[Clinical Analysis]\n    B --&gt; C[System Review]\n    B --&gt; D[Differential Diagnosis]\n    B --&gt; E[Risk Stratification]\n    B --&gt; F[Red Flag Detection]\n    C & D & E & F --&gt; G[Clinical Decision]\n    G --&gt; H[Transparent Recommendations]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style E fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style H fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nImplementation Deep Dive\ndef perform_diagnosis_analysis(patient_data):\n    prompt = f\"\"\"\n    &lt;|thinking|&gt;\n    Clinical Analysis Process:\n    \n    1. Chief Complaint Analysis:\n       - Primary: {patient_data['symptoms']}\n       - Duration: {patient_data['duration']}\n       - Severity: {patient_data['severity']}/10\n       \n    2. System Review:\n       - Cardiovascular: {patient_data['cv_symptoms']}\n       - Respiratory: {patient_data['resp_symptoms']}\n       - Red flags: {identify_red_flags(patient_data)}\n       \n    3. Differential Diagnosis Construction:\n       - Most likely: {primary_diagnosis}\n       - Also consider: {differential_list}\n       - Can't miss: {critical_diagnoses}\n       \n    4. Risk Stratification:\n       - Immediate risk: {risk_level}\n       - Disposition: {recommended_action}\n    &lt;|/thinking|&gt;\n    \n    Clinical Assessment: {final_assessment}\n    \"\"\"\n\n\nAdvanced Features\n\n\nRed Flag Detection: Automatic identification of serious conditions\nEvidence-Based Reasoning: Links to clinical guidelines\nRisk Stratification: Clear triage recommendations\nLearning Integration: Can reference latest medical knowledge\n\n\n\n\n\n5.3 Supply Chain Risk Management\n\nMulti-Dimensional Risk Framework\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph LR\n    subgraph \"Risk Dimensions\"\n        A[Geopolitical]\n        B[Financial]\n        C[Operational]\n        D[Dependency]\n    end\n    \n    subgraph \"Analysis Engine\"\n        E[PRefLexOR]\n    end\n    \n    subgraph \"Outputs\"\n        F[Risk Score]\n        G[Mitigation Plan]\n        H[Monitoring Alert]\n    end\n    \n    A & B & C & D --&gt; E\n    E --&gt; F & G & H\n    \n    style E fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n\n\n\n\n\n\n\n\nImplementation Code\n# Complex risk scoring with transparent methodology\ndef analyze_supplier_risk(self, supplier):\n    risk_assessment_prompt = f\"\"\"\n    &lt;|thinking|&gt;\n    Supply Chain Risk Analysis for {supplier.name}:\n    \n    1. Geopolitical Risk Assessment:\n       - Location: {supplier.country} \n       - Political stability score: {stability_score}/100\n       - Trade restrictions: {check_sanctions(supplier)}\n       - Risk level: {calculate_geo_risk()}\n    \n    2. Financial Health Analysis:\n       - Credit rating: {supplier.credit_rating}\n       - Payment history: {supplier.payment_performance}\n       - Financial ratios: {analyze_financials(supplier)}\n       - Bankruptcy risk: {altman_z_score(supplier)}\n    \n    3. Operational Risk Evaluation:\n       - Capacity utilization: {supplier.capacity}%\n       - Quality metrics: {supplier.quality_score}\n       - Delivery performance: {supplier.otd_rate}%\n       - Contingency planning: {supplier.backup_suppliers}\n    \n    4. Composite Risk Score:\n       - Weighting: Geo(30%), Fin(25%), Op(25%), Dep(20%)\n       - Calculation: {show_weighted_calculation()}\n       - Final score: {risk_score}/100\n    &lt;|/thinking|&gt;\n    \n    Risk Assessment: {final_assessment}\n    Mitigation Strategies: {recommendations}\n    \"\"\"\n\n\n\n5.4 Legal Document Analysis\n\nContract Analysis Framework\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TD\n    A[Contract Input] --&gt; B[Clause Analysis]\n    B --&gt; C[Payment Terms]\n    B --&gt; D[Liability Review]\n    B --&gt; E[IP Assessment]\n    B --&gt; F[Compliance Check]\n    C & D & E & F --&gt; G[Risk Matrix]\n    G --&gt; H[Legal Recommendations]\n    \n    style B fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style D fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000\n    style H fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nLegal Analysis Implementation\ndef analyze_contract(self, contract):\n    legal_analysis_prompt = f\"\"\"\n    &lt;|thinking|&gt;\n    Contract Legal Analysis:\n    \n    1. Key Terms Analysis:\n       a) Payment Terms:\n          - Structure: {analyze_payment_structure(contract)}\n          - Risk: Late payment penalties missing\n          - Recommendation: Add interest clause\n       \n       b) Liability Provisions:\n          - Limitation: ${extract_liability_cap(contract)}\n          - Exclusions: {identify_excluded_damages(contract)}\n          - Risk: No indemnification clause\n          - Legal precedent: See Smith v. Jones\n    \n    2. Regulatory Compliance:\n       - GDPR: {check_gdpr_compliance(contract)}\n       - Industry specific: {check_industry_regulations(contract)}\n       - Missing clauses: {identify_compliance_gaps(contract)}\n    \n    3. Risk Matrix:\n       - High risks: {categorize_high_risks(contract)}\n       - Medium risks: {categorize_medium_risks(contract)}\n       - Mitigation priority: {prioritize_actions(contract)}\n    &lt;|/thinking|&gt;\n    \n    Legal Recommendation: {final_legal_opinion}\n    \"\"\"\n\n\n\n5.5 Investment Research\n\nInvestment Analysis Architecture\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\nflowchart TB\n    subgraph \"Data Inputs\"\n        A[Market Data]\n        B[Financials]\n        C[News/Sentiment]\n    end\n    \n    subgraph \"PRefLexOR Analysis\"\n        D[Fundamental Analysis]\n        E[Technical Analysis]\n        F[Risk Assessment]\n    end\n    \n    subgraph \"Outputs\"\n        G[Investment Thesis]\n        H[Price Target]\n        I[Risk Profile]\n    end\n    \n    A & B & C --&gt; D & E & F\n    D & E & F --&gt; G & H & I\n    \n    style D fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style E fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n    style F fill:#ffffff,stroke:#2e8b57,stroke-width:2px,color:#000\n\n\n\n\n\n\n\n\nImplementation with Market Integration\ndef analyze_investment(self, symbol, market_data):\n    investment_analysis = f\"\"\"\n    &lt;|thinking|&gt;\n    Investment Analysis for {symbol}:\n    \n    1. Fundamental Analysis:\n       - P/E Ratio: {market_data.pe} vs Industry: {market_data.industry_pe}\n       - Revenue Growth: {market_data.revenue_growth}% YoY\n       - Profit Margins: {market_data.margins}%\n       - ROE: {market_data.roe}% vs peers: {market_data.peer_average}%\n       - Valuation: {determine_valuation(market_data)}\n    \n    2. Technical Analysis:\n       - Price vs 50-DMA: {market_data.price_vs_ma50}\n       - RSI: {market_data.rsi} ({interpret_rsi(market_data.rsi)})\n       - Support: ${market_data.support_level}\n       - Resistance: ${market_data.resistance_level}\n    \n    3. Investment Thesis:\n       - Bull case: {construct_bull_case(market_data)}\n       - Bear case: {construct_bear_case(market_data)}\n       - Base case: {expected_scenario(market_data)}\n       - Price target: ${calculate_price_target(market_data)}\n    &lt;|/thinking|&gt;\n    \n    Investment Recommendation: {final_recommendation}\n    \"\"\"\n\n\n\n5.6 Product Development Strategy\n\nStrategic Planning Framework\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph LR\n    subgraph \"Market Analysis\"\n        A[TAM/SAM/SOM]\n        B[Competition]\n        C[User Needs]\n    end\n    \n    subgraph \"Strategic Engine\"\n        D[PRefLexOR Analysis]\n    end\n    \n    subgraph \"Outputs\"\n        E[Go/No-Go Decision]\n        F[Development Roadmap]\n        G[Success Metrics]\n    end\n    \n    A & B & C --&gt; D\n    D --&gt; E & F & G\n    \n    style D fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style E fill:#fff3cd,stroke:#ffc107,stroke-width:2px,color:#000"
+  },
+  {
+    "objectID": "technical-deep-dive.html#comparative-analysis-preflexor-vs-standard-llms",
+    "href": "technical-deep-dive.html#comparative-analysis-preflexor-vs-standard-llms",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "Comparative Analysis: PRefLexOR vs Standard LLMs",
+    "text": "Comparative Analysis: PRefLexOR vs Standard LLMs\n\nSide-by-Side Comparison\n\nExample: Medical Diagnosis\n\n\nStandard LLM\nInput: \"45-year-old with chest pain and shortness of breath\"\nOutput: \"Possible heart condition. Seek immediate medical attention.\"\n\n\nPRefLexOR\nInput: \"45-year-old with chest pain and shortness of breath\"\n&lt;|thinking|&gt;\nAnalyzing presentation:\n- Age: 45 - moderate cardiac risk\n- Symptoms: Chest pain + dyspnea - concerning\n- Differential diagnosis:\n  1. Acute coronary syndrome (must rule out)\n  2. Pulmonary embolism (Wells criteria)\n  3. Pneumonia (check fever, cough)\n  4. Anxiety (diagnosis of exclusion)\n- Risk stratification: HIGH\n- Immediate actions:\n  - ECG within 10 minutes\n  - Troponin levels\n  - Chest X-ray\n&lt;|/thinking|&gt;\nOutput: \"High-risk presentation requiring immediate \nemergency evaluation for life-threatening conditions.\"\n\n\n\n\n\nKey Differentiators\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n    subgraph \"Standard LLM\"\n        A1[Hidden Process]\n        A2[No Audit Trail]\n        A3[Trust Issues]\n        A4[Compliance Risk]\n    end\n    \n    subgraph \"PRefLexOR\"\n        B1[Transparent Process]\n        B2[Complete Audit Trail]\n        B3[High Trust]\n        B4[Compliance Ready]\n    end\n    \n    A1 -.-&gt;|vs| B1\n    A2 -.-&gt;|vs| B2\n    A3 -.-&gt;|vs| B3\n    A4 -.-&gt;|vs| B4\n    \n    style A1 fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style A2 fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style A3 fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style A4 fill:#ffebee,stroke:#dc3545,stroke-width:2px,color:#000\n    style B1 fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style B2 fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style B3 fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style B4 fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000"
+  },
+  {
+    "objectID": "technical-deep-dive.html#key-concepts-and-implementation-patterns",
+    "href": "technical-deep-dive.html#key-concepts-and-implementation-patterns",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "Key Concepts and Implementation Patterns",
+    "text": "Key Concepts and Implementation Patterns\n\nCore Implementation Patterns\n\n1. Structured Reasoning Pattern\ndef structured_reasoning_pattern(input_data):\n    \"\"\"Universal pattern for PRefLexOR reasoning\"\"\"\n    return f\"\"\"\n    &lt;|thinking|&gt;\n    1. Problem Decomposition:\n       {break_down_problem(input_data)}\n    \n    2. Data Analysis:\n       {analyze_each_component(input_data)}\n    \n    3. Apply Domain Rules:\n       {apply_business_logic(input_data)}\n    \n    4. Risk Assessment:\n       {evaluate_risks(input_data)}\n    \n    5. Generate Recommendation:\n       {synthesize_recommendation(input_data)}\n    &lt;|/thinking|&gt;\n    \n    {final_answer}\n    \"\"\"\n\n\n2. Audit Trail Pattern\nclass AuditableDecision:\n    def create_audit_record(self):\n        return {\n            \"id\": str(uuid.uuid4()),\n            \"timestamp\": self.timestamp,\n            \"input\": self.input_data,\n            \"reasoning\": self.thinking_process,\n            \"decision\": self.decision,\n            \"confidence\": self.confidence,\n            \"version\": MODEL_VERSION,\n            \"compliance_checks\": self.compliance_results\n        }"
+  },
+  {
+    "objectID": "technical-deep-dive.html#business-value-and-roi",
+    "href": "technical-deep-dive.html#business-value-and-roi",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "Business Value and ROI",
+    "text": "Business Value and ROI\n\nProjected Benefits Framework*\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph LR\n    A[PRefLexOR Implementation] --&gt; B[Compliance Benefits]\n    A --&gt; C[Operational Benefits]\n    A --&gt; D[Customer Benefits]\n    \n    B --&gt; E[80% ↓ Violations*]\n    B --&gt; F[95% Audit Success*]\n    \n    C --&gt; G[70% Faster Decisions*]\n    C --&gt; H[65% ↓ Errors*]\n    \n    D --&gt; I[40% ↑ Trust*]\n    D --&gt; J[60% ↑ Satisfaction*]\n    \n    style A fill:#ffffff,stroke:#2e8b57,stroke-width:3px,color:#000\n    style E fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style F fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style G fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style H fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style I fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n    style J fill:#e8f5e8,stroke:#28a745,stroke-width:2px,color:#000\n\n\n\n\n\n\n\nImportant: All metrics shown are framework-based projections designed to illustrate the methodology for calculating potential benefits. Actual results will vary significantly based on organizational maturity, implementation scope, baseline performance, and specific use case requirements.\n\n\n\nROI Calculation Framework Example*\n\nFinancial Services Implementation Framework\nSample Investment Structure:\n- Implementation: $500,000\n- Training: $100,000\n- Maintenance: $200,000/year\n\nProjected Returns (Year 1):\n- Compliance cost reduction: $800,000*\n- Efficiency gains: $600,000*\n- Error reduction: $400,000*\n- Customer retention: $300,000*\n\nROI Calculation Framework:\nROI = (Returns - Investment) / Investment\nExample: ($2.1M - $0.8M) / $0.8M = 162%*\nFramework Note: This example demonstrates the ROI calculation methodology. Organizations should customize inputs based on their specific baseline costs, efficiency metrics, and implementation scope to generate accurate projections for business case development.\n\n\nMethodology Disclaimer: All quantified benefits presented (percentages, ROI calculations, cost savings) are framework-based projections intended to demonstrate the systematic approach for measuring PRefLexOR value. These projections are derived from theoretical models and should be validated through pilot implementations. Actual results will depend on organizational factors including current AI maturity, baseline performance metrics, implementation quality, and specific use case requirements. Organizations should conduct customized assessments using this framework to develop accurate business cases."
+  },
+  {
+    "objectID": "technical-deep-dive.html#future-directions",
+    "href": "technical-deep-dive.html#future-directions",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "Future Directions",
+    "text": "Future Directions\n\nTechnical Roadmap\n\n\n\n\n\n%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#ffffff', 'primaryTextColor':'#000000', 'primaryBorderColor':'#2e8b57', 'lineColor':'#2e8b57'}}}%%\ngraph TB\n    subgraph \"2024 Q1: Core Implementation\"\n        A[Six Business Applications]\n        B[Ollama Integration]\n        C[Basic Reasoning]\n    end\n    \n    subgraph \"2024 Q2: Enhanced Reasoning\"\n        D[Multi-step Analysis]\n        E[Cross-domain Synthesis]\n        F[Advanced Patterns]\n    end\n    \n    subgraph \"2024 Q3: Enterprise Features\"\n        G[ERP Integration]\n        H[Real-time Systems]\n        I[Collaborative AI]\n    end\n    \n    subgraph \"2024 Q4: Advanced Capabilities\"\n        J[Reasoning Visualization]\n        K[Federated Learning]\n        L[Interactive Refinement]\n    end\n    \n    A & B & C --&gt; D & E & F\n    D & E & F --&gt; G & H & I\n    G & H & I --&gt; J & K & L"
+  },
+  {
+    "objectID": "technical-deep-dive.html#conclusion",
+    "href": "technical-deep-dive.html#conclusion",
+    "title": "PRefLexOR: Technical Deep Dive",
+    "section": "Conclusion",
+    "text": "Conclusion\nPRefLexOR fundamentally changes how we interact with AI systems by making the reasoning process transparent, auditable, and trustworthy. The six business applications demonstrate that transparent AI is not just possible but essential for critical business decisions.\n\nKey Takeaways\n\nTransparency is not optional in critical applications\nReasoning visibility enables trust and compliance\nImplementation patterns are reusable across domains\nBusiness value is quantifiable and significant\nFuture potential extends to all AI decision-making\n\n\n\nTransform your AI from black box to glass box with PRefLexOR."
+  },
+  {
+    "objectID": "TROUBLESHOOTING.html",
+    "href": "TROUBLESHOOTING.html",
+    "title": "",
+    "section": "",
+    "text": "Code"
+  },
+  {
+    "objectID": "TROUBLESHOOTING.html#mermaid-diagrams-not-rendering",
+    "href": "TROUBLESHOOTING.html#mermaid-diagrams-not-rendering",
+    "title": "",
+    "section": "Mermaid Diagrams Not Rendering",
+    "text": "Mermaid Diagrams Not Rendering\n\nIssue\nMermaid diagrams show in VS Code preview but don’t render on the website.\n\n\nSolutions\n\nOption 1: Use Simple Configuration\nReplace _quarto.yml with _quarto-simple.yml:\nmv _quarto.yml _quarto-backup.yml\nmv _quarto-simple.yml _quarto.yml\n\n\nOption 2: Test Mermaid Separately\n\nBuild the test page:\nquarto render test-mermaid.qmd\nOpen _site/test-mermaid.html in browser\nIf diagrams show here, the issue is configuration-specific\n\n\n\nOption 3: Check Quarto Version\nquarto --version\nEnsure you have Quarto 1.4+ for best Mermaid support.\n\n\nOption 4: Manual Mermaid Installation\nIf Quarto’s built-in Mermaid isn’t working:\n# Install mermaid-cli globally\nnpm install -g @mermaid-js/mermaid-cli\n\n# Convert diagrams to images\nmmdc -i diagram.mmd -o diagram.png\n\n\nOption 5: Use Alternative Diagram Formats\nReplace Mermaid with SVG or PNG diagrams:\n![Architecture Diagram](images/architecture.svg)\n\n\n\nDebug Steps\n\nCheck Browser Console\n\nOpen Developer Tools (F12)\nLook for JavaScript errors\nCheck if Mermaid library loads\n\nValidate Mermaid Syntax\n\nTest diagrams at https://mermaid.live/\nEnsure no syntax errors\n\nCheck Network Tab\n\nVerify Mermaid CDN loads\nCheck for 404 errors\n\nTry Different Browsers\n\nTest in Chrome, Firefox, Safari\nCheck if it’s browser-specific\n\n\n\n\nCommon Fixes\n\nFix 1: Remove Custom Mermaid Configuration\nformat:\n  html:\n    # Remove custom mermaid configuration\n    # Use only:\n    mermaid:\n      theme: default\n\n\nFix 2: Use PNG Format\nformat:\n  html:\n    mermaid-format: png\n\n\nFix 3: Disable JavaScript Optimizations\nformat:\n  html:\n    minimal: false"
+  },
+  {
+    "objectID": "TROUBLESHOOTING.html#other-common-issues",
+    "href": "TROUBLESHOOTING.html#other-common-issues",
+    "title": "",
+    "section": "Other Common Issues",
+    "text": "Other Common Issues\n\nBuild Errors\n\nMissing Dependencies\n# Reinstall Quarto\nbrew reinstall quarto\n\n# Clear cache\nrm -rf .quarto _site\n\n\nSyntax Errors\n# Check specific file\nquarto check file.qmd\n\n# Validate all files\nquarto check\n\n\n\nStyling Issues\n\nCSS Not Loading\n\nCheck styles.css path in _quarto.yml\nClear browser cache\nHard refresh (Ctrl+F5 or Cmd+Shift+R)\n\n\n\nResponsive Issues\n\nTest in mobile view\nCheck CSS media queries\nValidate HTML structure\n\n\n\n\nPerformance Issues\n\nSlow Rendering\nexecute:\n  freeze: true  # Cache execution results\n\n\nLarge File Sizes\n\nOptimize images\nUse PNG for Mermaid instead of SVG\nEnable compression"
+  },
+  {
+    "objectID": "TROUBLESHOOTING.html#quick-fixes-script",
+    "href": "TROUBLESHOOTING.html#quick-fixes-script",
+    "title": "",
+    "section": "Quick Fixes Script",
+    "text": "Quick Fixes Script\nCreate fix-site.sh:\n#!/bin/bash\necho \"Fixing common issues...\"\n\n# Clear build artifacts\nrm -rf _site .quarto\n\n# Use simple configuration\nif [ -f \"_quarto-simple.yml\" ]; then\n    cp _quarto-simple.yml _quarto.yml\n    echo \"Using simple configuration\"\nfi\n\n# Rebuild\nquarto render\n\necho \"Site rebuilt with fixes\""
+  },
+  {
+    "objectID": "TROUBLESHOOTING.html#getting-help",
+    "href": "TROUBLESHOOTING.html#getting-help",
+    "title": "",
+    "section": "Getting Help",
+    "text": "Getting Help\n\nCheck Quarto Documentation: https://quarto.org/docs/authoring/diagrams.html\nMermaid Documentation: https://mermaid.js.org/\nTest Individual Components: Use test-mermaid.qmd\nCommunity Support: Quarto GitHub Discussions"
+  },
+  {
+    "objectID": "TROUBLESHOOTING.html#version-information",
+    "href": "TROUBLESHOOTING.html#version-information",
+    "title": "",
+    "section": "Version Information",
+    "text": "Version Information\nWorks best with: - Quarto 1.4.550+ - Modern browsers (Chrome 90+, Firefox 88+, Safari 14+) - Node.js 16+ (if using mermaid-cli)"
+  },
+  {
+    "objectID": "TROUBLESHOOTING.html#final-resort-static-images",
+    "href": "TROUBLESHOOTING.html#final-resort-static-images",
+    "title": "",
+    "section": "Final Resort: Static Images",
+    "text": "Final Resort: Static Images\nIf Mermaid continues to fail, convert to static images:\n# Install mermaid-cli\nnpm install -g @mermaid-js/mermaid-cli\n\n# Convert diagrams\nmmdc -i flowchart.mmd -o flowchart.png -w 1024 -H 768\n\n# Use in markdown\n![Flowchart](flowchart.png)"
   }
 ]
